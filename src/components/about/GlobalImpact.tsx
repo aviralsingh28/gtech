@@ -107,7 +107,7 @@ export default function GlobalImpact() {
             </div>
             <div className="impact-image">
               <Image
-                src="/trusted-industry/ChatGPT Image May 30, 2026, 03_50_47 PM.png"
+                src="/trusted-industry/ChatGPT Image May 30, 2026, 03_50_47 PM.png 15-56-44-924.png"
                 alt="Trusted Industry 2"
                 width={300}
                 height={200}
