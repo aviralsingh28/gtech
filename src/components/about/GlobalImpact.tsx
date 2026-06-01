@@ -51,6 +51,16 @@ export default function GlobalImpact() {
               border-radius: 12px;
               object-fit: contain;
             }
+            @media (max-width: 767px) {
+              .impact-grid {
+                margin-top: 40px;
+                gap: 16px;
+              }
+              .impact-image {
+                min-width: min(100%, 220px);
+                max-width: 100%;
+              }
+            }
           `}</style>
 
           <div style={{ maxWidth: 720 }}>

@@ -1,52 +1,30 @@
 "use client";
-import Image from "next/image";
+
+import { pageHeroSectionStyle, pageHeroStyles } from "@/lib/pageHero";
 
 export default function Hero() {
   return (
-    <section
-      id="home"
-      style={{
-        position: "relative",
-        background: "#fff",
-        padding: "clamp(80px, 11vw, 104px) clamp(12px, 3vw, 24px) clamp(12px, 3vw, 24px)",
-      }}
-    >
+    <section id="home" style={pageHeroSectionStyle}>
       <style>{`
-        .hero-card {
-          position: relative;
-          height: calc(100svh - 128px);
-          min-height: 560px;
-          border-radius: 32px;
-          overflow: hidden;
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-end;
-          background: #0a0a0a;
-        }
-        @media (max-width: 768px) {
-          .hero-card { min-height: 520px; border-radius: 24px; }
-        }
-        .hero-content {
-          position: relative;
-          z-index: 10;
-          max-width: 1360px;
-          margin: 0 auto;
-          width: 100%;
-          padding: 0 clamp(20px, 5vw, 64px) clamp(28px, 6vw, 64px);
+        ${pageHeroStyles}
+        .hero-home-inner {
           display: flex;
           flex-direction: column;
           gap: 40px;
         }
         @media (min-width: 1024px) {
-          .hero-content {
+          .hero-home-inner {
             flex-direction: row;
             justify-content: space-between;
             align-items: flex-end;
             gap: 64px;
           }
         }
+        @media (max-width: 768px) {
+          .hero-home-inner { gap: 28px; }
+        }
       `}</style>
-      <div className="hero-card">
+      <div className="page-hero-card" style={{ background: "#0a0a0a" }}>
         {/* Background Video */}
         <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
           <video
@@ -74,7 +52,7 @@ export default function Hero() {
         </div>
 
         {/* Content at bottom */}
-        <div className="hero-content">
+        <div className="page-hero-inner hero-home-inner">
           {/* Left — Big white title */}
           <div style={{ flex: "1" }}>
             <h1

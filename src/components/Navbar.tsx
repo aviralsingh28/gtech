@@ -107,7 +107,7 @@ export default function Navbar() {
             top: 0;
             right: 0;
             bottom: 0;
-            width: 300px;
+            width: min(300px, 100vw);
             background: #fff;
             padding: 100px 32px 40px;
             display: flex;

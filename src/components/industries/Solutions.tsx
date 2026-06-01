@@ -131,7 +131,7 @@ export default function Solutions() {
           }
           .solutions-subtitle {
             font-size: 16px;
-            color: #666;
+            color: var(--muted, #5a5a5a);
             font-family: 'Outfit', sans-serif;
             line-height: 1.7;
           }
@@ -147,7 +147,7 @@ export default function Solutions() {
           .solution-card {
             background: #fff;
             border-radius: 18px;
-            padding: 40px;
+            padding: clamp(24px, 5vw, 40px);
             border: 1px solid #e8e8e8;
             transition: all 0.3s ease;
             position: relative;
@@ -174,7 +174,7 @@ export default function Solutions() {
           }
           .solution-description {
             font-size: 15px;
-            color: #666;
+            color: var(--muted, #5a5a5a);
             font-family: 'Outfit', sans-serif;
             line-height: 1.7;
             margin-bottom: 20px;

@@ -146,7 +146,7 @@ export default function WhyJoinUs() {
               <p
                 style={{
                   fontSize: 14,
-                  color: "#666",
+                  color: "var(--muted, #5a5a5a)",
                   lineHeight: 1.6,
                   fontFamily: "'Outfit', sans-serif",
                 }}

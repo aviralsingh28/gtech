@@ -220,7 +220,7 @@ export default function Work() {
               transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
             }
             .work-pill:hover {
-              border-color: #FF9800 !important;
+              border-color: #f5a623 !important;
               background: rgba(255,152,0,0.08);
             }
             .work-cta {
@@ -397,7 +397,7 @@ export default function Work() {
                   <p
                     style={{
                       fontSize: "clamp(12px, 2vw, 14px)",
-                      color: "#FF9800",
+                      color: "#f5a623",
                       fontWeight: 600,
                       fontFamily: "'Inter', sans-serif",
                       marginBottom: "clamp(8px, 2vw, 12px)",
@@ -482,7 +482,7 @@ export default function Work() {
                   width: "clamp(32px, 8vw, 40px)",
                   height: "clamp(32px, 8vw, 40px)",
                   borderRadius: "50%",
-                  background: "#FF9800",
+                  background: "#f5a623",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",

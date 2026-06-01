@@ -34,13 +34,13 @@ export default function Process() {
       <div style={{ maxWidth: 1360, margin: "0 auto" }}>
         
         {/* Header */}
-        <div style={{ textAlign: "center", marginBottom: 100 }}>
+        <div style={{ textAlign: "center", marginBottom: "clamp(48px, 10vw, 100px)" }}>
           <h2
             style={{
               fontSize: "clamp(2rem, 3.5vw, 3rem)",
               fontWeight: 400,
               color: "#1a1a1a",
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Outfit', sans-serif",
               lineHeight: 1.25,
               maxWidth: 800,
               margin: "0 auto",
@@ -51,34 +51,81 @@ export default function Process() {
           </h2>
         </div>
 
-        {/* Timeline Graphic */}
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", position: "relative", marginBottom: 64, maxWidth: 1200, margin: "0 auto 64px" }}>
-          {/* Connecting line */}
-          <div style={{ background: "#f0f0f0", height: 1, position: "absolute", width: "100%", zIndex: 0 }} />
-          
-          {/* Dot 1 */}
-          <div style={{ zIndex: 1, padding: "0 16px", background: "#fff", display: "flex" }}>
-            <div style={{ width: 14, height: 14, borderRadius: "50%", background: "#f15a24" }} />
-          </div>
-          
-          {/* Text 1 */}
-          <div style={{ zIndex: 1, padding: "0 20px", background: "#fff", fontSize: 13, color: "#444", fontFamily: "'Inter', sans-serif" }}>
-            Engineered for scale
-          </div>
-
-          {/* Dot 2 */}
-          <div style={{ zIndex: 1, padding: "0 16px", background: "#fff", display: "flex" }}>
-            <div style={{ width: 14, height: 14, borderRadius: "50%", background: "#f15a24" }} />
-          </div>
-
-          {/* Text 2 */}
-          <div style={{ zIndex: 1, padding: "0 20px", background: "#fff", fontSize: 13, color: "#444", fontFamily: "'Inter', sans-serif" }}>
-            Predictable delivery cycles
-          </div>
-
-          {/* Dot 3 */}
-          <div style={{ zIndex: 1, padding: "0 16px", background: "#fff", display: "flex" }}>
-            <div style={{ width: 14, height: 14, borderRadius: "50%", background: "#f15a24" }} />
+        <style>{`
+          .process-timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto clamp(40px, 8vw, 64px);
+          }
+          .process-timeline-line {
+            background: var(--border, #e0e0e0);
+            height: 1px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 7px;
+            z-index: 0;
+          }
+          .process-timeline-steps {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
+            gap: 8px;
+          }
+          .process-timeline-step {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #fff;
+            padding: 0 8px;
+            flex-shrink: 0;
+          }
+          .process-timeline-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--amber, #f5a623);
+            flex-shrink: 0;
+          }
+          .process-timeline-label {
+            font-size: 13px;
+            color: var(--muted, #5a5a5a);
+            font-family: 'Outfit', sans-serif;
+            white-space: nowrap;
+          }
+          @media (max-width: 640px) {
+            .process-timeline-line { display: none; }
+            .process-timeline-steps {
+              flex-direction: column;
+              align-items: stretch;
+              gap: 16px;
+            }
+            .process-timeline-step {
+              justify-content: flex-start;
+              padding: 0;
+            }
+            .process-timeline-label {
+              white-space: normal;
+            }
+          }
+        `}</style>
+        <div className="process-timeline">
+          <div className="process-timeline-line" aria-hidden />
+          <div className="process-timeline-steps">
+            <div className="process-timeline-step">
+              <span className="process-timeline-dot" aria-hidden />
+              <span className="process-timeline-label">Engineered for scale</span>
+            </div>
+            <div className="process-timeline-step">
+              <span className="process-timeline-dot" aria-hidden />
+              <span className="process-timeline-label">Predictable delivery cycles</span>
+            </div>
+            <div className="process-timeline-step">
+              <span className="process-timeline-dot" aria-hidden />
+              <span className="process-timeline-label">Production-ready delivery</span>
+            </div>
           </div>
         </div>
 
@@ -108,13 +155,21 @@ export default function Process() {
             width: 300px;
             background: #fafafa;
             border-radius: 24px;
-            padding: 32px;
+            padding: 24px;
             display: flex;
             flex-direction: column;
-            min-height: 460px;
+            min-height: 400px;
           }
           @media (min-width: 768px) {
-            .process-card { width: 320px; }
+            .process-card { width: 320px; min-height: 420px; }
+          }
+          @media (max-width: 640px) {
+            .process-card {
+              width: min(300px, 85vw);
+              min-height: 360px;
+              padding: 22px;
+            }
+            .process-pill-text { white-space: normal !important; }
           }
         `}</style>
 
@@ -146,14 +201,14 @@ export default function Process() {
                       fontSize: 18,
                       fontWeight: 600,
                       color: "#111",
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "'Outfit', sans-serif",
                       letterSpacing: "-0.01em",
                       marginBottom: 8,
                     }}
                   >
                     {step.title}
                   </h3>
-                  <p style={{ fontSize: 14, color: "#888", fontFamily: "'Inter', sans-serif" }}>
+                  <p style={{ fontSize: 14, color: "var(--muted, #5a5a5a)", fontFamily: "'Outfit', sans-serif" }}>
                     {step.desc}
                   </p>
                 </div>
@@ -170,7 +225,7 @@ export default function Process() {
                         background: "#fff",
                       }}
                     >
-                      <p style={{ fontSize: 11, color: "#777", fontFamily: "'Inter', sans-serif", fontWeight: 500, whiteSpace: "nowrap" }}>
+                      <p className="process-pill-text" style={{ fontSize: 11, color: "var(--muted, #5a5a5a)", fontFamily: "'Outfit', sans-serif", fontWeight: 500, whiteSpace: "nowrap" }}>
                         {pill}
                       </p>
                     </div>

@@ -1,317 +1,317 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { roadmapData } from "./roadmapData";
 
+const font = "'Outfit', sans-serif";
+
 const Roadmap = () => {
+  const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    const element = sectionRef.current;
+    if (!element) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
+        if (entry.isIntersecting) setIsVisible(true);
       },
-      { threshold: 0.1 }
+      { threshold: 0.08 }
     );
 
-    const element = document.getElementById("roadmap-section");
-    if (element) {
-      observer.observe(element);
-    }
-
-    return () => {
-      if (element) {
-        observer.unobserve(element);
-      }
-    };
+    observer.observe(element);
+    return () => observer.disconnect();
   }, []);
 
   return (
     <section
+      ref={sectionRef}
       id="roadmap-section"
-      className="relative py-32 px-4 sm:px-6 lg:px-8 bg-linear-to-b from-white to-gray-50 overflow-full"
+      style={{
+        background: "#fff",
+        padding: "clamp(72px, 10vw, 120px) clamp(12px, 3vw, 24px)",
+      }}
     >
-      {/* Background decorative elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-orange-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+      <div style={{ maxWidth: 1360, margin: "0 auto" }}>
+        <style>{`
+          .roadmap-header {
+            text-align: center;
+            margin-bottom: clamp(48px, 8vw, 80px);
+          }
+          .roadmap-title {
+            font-size: clamp(2.2rem, 4.5vw, 3.25rem);
+            font-weight: 700;
+            color: var(--amber, #f5a623);
+            font-family: ${font};
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+            margin-bottom: 16px;
+          }
+          .roadmap-subtitle {
+            font-size: clamp(1rem, 1.4vw, 1.125rem);
+            color: var(--muted, #5a5a5a);
+            font-family: ${font};
+            line-height: 1.6;
+          }
+          .roadmap-timeline {
+            position: relative;
+            padding: 16px 0;
+          }
+          .roadmap-line {
+            display: none;
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 0;
+            transform: translateX(-50%);
+            border-left: 2px dashed #1a1a1a;
+            opacity: 0.75;
+            pointer-events: none;
+          }
+          .roadmap-desktop {
+            display: none;
+          }
+          .roadmap-mobile {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 clamp(12px, 3vw, 20px);
+          }
+          .roadmap-mobile-track {
+            position: absolute;
+            left: 50%;
+            top: 11px;
+            bottom: 11px;
+            width: 0;
+            transform: translateX(-50%);
+            border-left: 2px dashed #1a1a1a;
+            opacity: 0.65;
+            pointer-events: none;
+          }
+          .roadmap-mobile-step {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 420px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
+          }
+          .roadmap-mobile-step:last-child {
+            margin-bottom: 0;
+          }
+          .roadmap-mobile-step.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+          }
+          .roadmap-mobile-node {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #fff;
+            border: 3px solid var(--amber, #f5a623);
+            box-shadow: 0 0 0 4px #fff;
+            flex-shrink: 0;
+            margin-bottom: 20px;
+          }
+          @media (min-width: 768px) {
+            .roadmap-line { display: block; }
+            .roadmap-desktop {
+              display: flex;
+              flex-direction: column;
+              gap: clamp(56px, 8vw, 88px);
+              padding: 24px clamp(24px, 4vw, 48px) 32px;
+            }
+            .roadmap-mobile { display: none; }
+          }
+          .roadmap-row {
+            display: grid;
+            grid-template-columns: 1fr 48px 1fr;
+            align-items: center;
+            gap: 0;
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.65s ease, transform 0.65s ease;
+          }
+          .roadmap-row.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+          }
+          .roadmap-card-slot {
+            display: flex;
+            padding: 0 clamp(12px, 2vw, 28px);
+          }
+          .roadmap-card-slot--left { justify-content: flex-end; }
+          .roadmap-card-slot--right { justify-content: flex-start; }
+          .roadmap-node-wrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+          }
+          .roadmap-node {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #fff;
+            border: 3px solid var(--amber, #f5a623);
+            box-shadow: 0 0 0 4px #fff;
+            flex-shrink: 0;
+          }
+          .roadmap-card {
+            width: 100%;
+            max-width: 420px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.07);
+            padding: clamp(28px, 4vw, 40px) clamp(24px, 3vw, 36px);
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+          }
+          .roadmap-card:hover {
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+          }
+          .roadmap-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 4px solid #fff;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+          }
+          .roadmap-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+          .roadmap-card-title {
+            text-align: center;
+            font-size: clamp(1.25rem, 2vw, 1.5rem);
+            font-weight: 700;
+            color: #111;
+            font-family: ${font};
+            margin-bottom: 12px;
+            letter-spacing: -0.01em;
+          }
+          .roadmap-card-desc {
+            text-align: center;
+            font-size: 15px;
+            color: var(--muted, #5a5a5a);
+            line-height: 1.65;
+            font-family: ${font};
+            margin-bottom: 24px;
+            padding: 0 4px;
+          }
+          .roadmap-features {
+            list-style: none;
+            margin: 0 auto;
+            padding: 0;
+            max-width: 320px;
+          }
+          .roadmap-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 15px;
+            color: #333;
+            font-family: ${font};
+            line-height: 1.55;
+            margin-bottom: 12px;
+          }
+          .roadmap-features li:last-child { margin-bottom: 0; }
+          .roadmap-bullet {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 6px;
+            background: linear-gradient(90deg, var(--brand-blue, #769bbe) 50%, var(--amber, #f5a623) 50%);
+          }
+        `}</style>
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        {/* Header */}
-        <div className="text-center mb-32">
-          <h2 className="text-4xl sm:text-5xl font-bold text-[#f5a623] mb-4">
-            Development Roadmap
-          </h2>
-          <p className="text-gray-600 text-lg">A step-by-step journey to project success</p>
-        </div>
-        <div className="h-8"></div>
+        <header className="roadmap-header">
+          <h2 className="roadmap-title">Development Roadmap</h2>
+          <p className="roadmap-subtitle">
+            A step-by-step journey to project success
+          </p>
+        </header>
 
-        {/* Roadmap Container */}
-        <div className="relative pt-8">
-          {/* Desktop Timeline SVG */}
-          <svg
-            className="hidden md:block absolute left-1/2 transform -translate-x-1/2 top-0 w-1 h-full pointer-events-none"
-            viewBox="0 0 2 2000"
-            preserveAspectRatio="none"
-          >
-            <defs>
-              <linearGradient
-                id="verticalRoadGradient"
-                x1="0%"
-                y1="0%"
-                x2="0%"
-                y2="100%"
-              >
-                <stop offset="0%" stopColor="#0066CC" />
-                <stop offset="50%" stopColor="#0052A3" />
-                <stop offset="100%" stopColor="#F59E0B" />
-              </linearGradient>
-            </defs>
+        <div className="roadmap-timeline">
+          <div className="roadmap-line" aria-hidden />
 
-            <line
-              x1="1"
-              y1="0"
-              x2="1"
-              y2="2000"
-              stroke="url(#verticalRoadGradient)"
-              strokeWidth="8"
-              opacity="0.3"
-            />
-
-            <line
-              x1="1"
-              y1="0"
-              x2="1"
-              y2="2000"
-              stroke="black"
-              strokeWidth="2"
-              strokeDasharray="30,25"
-              opacity="0.8"
-            />
-          </svg>
-
-          {/* MOBILE VIEW - FIXED SPACING */}
-          <div className="block md:hidden py-6">
+          <div className="roadmap-desktop">
             {roadmapData.map((item, index) => (
               <div
-                key={index}
-                className="flex flex-col items-center"
-                style={{
-                  animationDelay: `${index * 150}ms`,
-                  animation: isVisible
-                    ? "slideInUp 0.8s ease-out forwards"
-                    : "none",
-                }}
+                key={item.id}
+                className={`roadmap-row roadmap-row--${index % 2 === 0 ? "left" : "right"} ${isVisible ? "is-visible" : ""}`}
+                style={{ transitionDelay: `${index * 100}ms` }}
               >
-                {/* Container with proper side margins */}
-                <div className="w-full px-4 sm:px-6">
-                  <RoadmapCard
-                    item={item}
-                    isVisible={isVisible}
-                    animationDelay={`${index * 150}ms`}
-                  />
+                <div className="roadmap-card-slot roadmap-card-slot--left">
+                  {index % 2 === 0 && <RoadmapCard item={item} />}
                 </div>
-
-                {index !== roadmapData.length - 1 && (
-                  <div className="flex flex-col items-center my-2">
-                    <div className="w-1 h-8 bg-orange-300 rounded-full"></div>
-                    <div className="text-2xl text-orange-400 animate-bounce">
-                      ↓
-                    </div>
-                  </div>
-                )}
+                <div className="roadmap-node-wrap">
+                  <span className="roadmap-node" aria-hidden />
+                </div>
+                <div className="roadmap-card-slot roadmap-card-slot--right">
+                  {index % 2 === 1 && <RoadmapCard item={item} />}
+                </div>
               </div>
             ))}
           </div>
 
-          {/* DESKTOP VIEW */}
-          <div className="hidden md:block relative space-y-32 py-16 px-8 sm:px-12 lg:px-20 xl:px-28">
+          <div className="roadmap-mobile">
+            <div className="roadmap-mobile-track" aria-hidden />
             {roadmapData.map((item, index) => (
-              <RoadmapItem
-                key={index}
-                item={item}
-                index={index}
-                isVisible={isVisible}
-                isLeft={index % 2 === 0}
-              />
+              <div
+                key={item.id}
+                className={`roadmap-mobile-step ${isVisible ? "is-visible" : ""}`}
+                style={{ transitionDelay: `${index * 80}ms` }}
+              >
+                <span className="roadmap-mobile-node" aria-hidden />
+                <RoadmapCard item={item} />
+              </div>
             ))}
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes blob {
-          0%,
-          100% {
-            transform: translate(0, 0) scale(1);
-          }
-          33% {
-            transform: translate(30px, -50px) scale(1.1);
-          }
-          66% {
-            transform: translate(-20px, 20px) scale(0.9);
-          }
-        }
-
-        @keyframes slideInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes scaleIn {
-          from {
-            opacity: 0;
-            transform: scale(0.8);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-
-        .animate-blob {
-          animation: blob 7s infinite;
-        }
-
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-
-        .animate-slide-in {
-          animation: slideInUp 0.8s ease-out forwards;
-        }
-
-        .animate-scale-in {
-          animation: scaleIn 0.6s ease-out forwards;
-        }
-      `}</style>
     </section>
   );
 };
 
-interface RoadmapItemProps {
-  item: (typeof roadmapData)[0];
-  index: number;
-  isVisible: boolean;
-  isLeft: boolean;
-}
-
-const RoadmapCard: React.FC<{
-  item: typeof roadmapData[0];
-  isVisible: boolean;
-  animationDelay: string;
-}> = ({ item, isVisible, animationDelay }) => (
-  <div
-    className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 px-6 sm:px-8 py-10 sm:py-12 lg:px-12 lg:py-16 h-full flex flex-col my-4"
-  >
-    {/* Icon */}
-    <div className="flex justify-center mb-6">
+function RoadmapCard({ item }: { item: (typeof roadmapData)[0] }) {
+  return (
+    <article className="roadmap-card">
       <div
-        className="w-20 h-20 sm:w-24 sm:h-24 rounded-full flex items-center justify-center overflow-hidden"
-        style={{
-          background: item.bgColor,
-          animationDelay: isVisible ? animationDelay : "0ms",
-          animation: isVisible
-            ? "scaleIn 0.6s ease-out forwards"
-            : "none",
-        }}
+        className="roadmap-icon"
+        style={{ background: item.bgColor }}
       >
-        <img 
-          src={item.icon} 
-          alt={item.title}
-          className="w-full h-full object-cover border-6 border-white rounded-full"
-        />
+        <img src={item.icon} alt={item.title} />
       </div>
-    </div>
-
-    {/* Title */}
-    <h3 className="text-center text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
-      {item.title}
-    </h3>
-
-    {/* Description */}
-    <p className="text-center text-gray-600 text-base sm:text-lg leading-8 sm:leading-9 mb-8 sm:mb-10 px-2 sm:px-4">
-      {item.description}
-    </p>
-
-    {/* Features */}
-    {item.features && (
-      <div className="mt-6 sm:mt-8 flex justify-center">
-        <ul className="space-y-4 sm:space-y-5 w-full max-w-md">
-          {item.features.map((feature, idx) => (
-            <li
-              key={idx}
-              className="flex items-center gap-3 sm:gap-4 text-gray-700"
-            >
-              <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-gradient-to-r from-blue-500 to-orange-500 shrink-0"></span>
-              <span className="text-base sm:text-lg leading-7 sm:leading-8">
-                {feature}
-              </span>
+      <h3 className="roadmap-card-title">{item.title}</h3>
+      <p className="roadmap-card-desc">{item.description}</p>
+      {item.features && item.features.length > 0 && (
+        <ul className="roadmap-features">
+          {item.features.map((feature) => (
+            <li key={feature}>
+              <span className="roadmap-bullet" aria-hidden />
+              <span>{feature}</span>
             </li>
           ))}
         </ul>
-      </div>
-    )}
-  </div>
-);
-
-const RoadmapItem: React.FC<RoadmapItemProps> = ({
-  item,
-  index,
-  isVisible,
-  isLeft,
-}) => {
-  const animationDelay = `${index * 150}ms`;
-
-  return (
-    <div
-      className="relative flex items-center justify-center px-4"
-      style={{
-        animationDelay: isVisible ? animationDelay : "0ms",
-        animation: isVisible
-          ? "slideInUp 0.8s ease-out forwards"
-          : "none",
-      }}
-    >
-      {/* LEFT */}
-      <div className="w-[42%] flex justify-end pr-20">
-        {isLeft && (
-          <div className="w-full max-w-2xl px-6">
-            <RoadmapCard
-              item={item}
-              isVisible={isVisible}
-              animationDelay={animationDelay}
-            />
-          </div>
-        )}
-      </div>
-
-      {/* CENTER TIMELINE */}
-      <div className="w-[10%] flex justify-center relative">
-        <div className="w-7 h-7 rounded-full bg-white border-4 border-orange-300 shadow-lg z-10" />
-      </div>
-
-      {/* RIGHT */}
-      <div className="w-[42%] flex justify-start pl-20">
-        {!isLeft && (
-          <div className="w-full max-w-2xl px-6">
-            <RoadmapCard
-              item={item}
-              isVisible={isVisible}
-              animationDelay={animationDelay}
-            />
-          </div>
-        )}
-      </div>
-    </div>
+      )}
+    </article>
   );
-};
+}
 
 export default Roadmap;

@@ -1,23 +1,32 @@
 "use client";
+
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-const companyReviews = [
+const clientReviews = [
   {
+    name: "CyberSentinel",
     logo: "/review-company/cybersentinel.png",
-    review: "The quality of work delivered is impressive. From development to final delivery, everything was handled with precision.cer",
+    review:
+      "The quality of work delivered is impressive. From development to final delivery, everything was handled with precision.",
   },
   {
+    name: "Pinnacle",
     logo: "/review-company/pinnacle.png",
-    review: "The project was handled with complete reliability. Commitments were honored, and the delivery was consistent with what was promised",
+    review:
+      "The project was handled with complete reliability. Commitments were honored, and delivery was consistent with what was promised.",
   },
   {
+    name: "StrategeIT",
     logo: "/review-company/strategeit.png",
-    review: "The final product delivers real business value. It supports our workflows efficiently and improves overall productivity.",
+    review:
+      "The final product delivers real business value. It supports our workflows efficiently and improves overall productivity.",
   },
   {
+    name: "TechMentor",
     logo: "/review-company/techmentor.png",
-    review: "The UI/UX is clean, intuitive, and well thought out. Our internal team found the interface easy to understand and navigate.",
+    review:
+      "The UI/UX is clean, intuitive, and well thought out. Our internal team found the interface easy to understand and navigate.",
   },
 ];
 
@@ -29,204 +38,229 @@ export default function About() {
     const node = sectionRef.current;
     if (!node) return;
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        setVisible(entry.isIntersecting);
-      },
-      { threshold: 0.15 }
+      ([entry]) => setVisible(entry.isIntersecting),
+      { threshold: 0.12 }
     );
     observer.observe(node);
     return () => observer.disconnect();
   }, []);
 
   return (
-    <section 
-      ref={sectionRef} 
-      id="about" 
-      style={{ 
-        background: "#FFFFFF", 
-        padding: "clamp(12px, 3vw, 24px) clamp(12px, 3vw, 24px) 0" 
+    <section
+      ref={sectionRef}
+      id="about"
+      style={{
+        background: "#fff",
+        padding: "clamp(12px, 3vw, 24px) clamp(12px, 3vw, 24px) 0",
       }}
     >
-      <div 
-        style={{ 
-          background: "#FBFAF9", 
-          borderRadius: 32, 
-          padding: "clamp(72px, 12vw, 160px) 0",
+      <div
+        style={{
+          background: "var(--surface, #fbfaf9)",
+          borderRadius: 32,
+          padding: "clamp(56px, 8vw, 120px) 0",
         }}
       >
-        <div 
-          style={{ 
-            maxWidth: 1360, 
+        <div
+          style={{
+            maxWidth: 1360,
             margin: "0 auto",
             padding: "0 clamp(20px, 5vw, 64px)",
           }}
         >
           <style>{`
-            .testimonial-header {
+            .clients-say-header {
+              text-align: center;
+              max-width: 640px;
+              margin: 0 auto clamp(40px, 6vw, 64px);
               opacity: 0;
               transform: translateY(16px);
-              transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+              transition: opacity 0.6s ease, transform 0.6s ease;
             }
-            .testimonial-header.is-visible {
+            .clients-say-header.is-visible {
               opacity: 1;
               transform: translateY(0);
             }
-            .testimonial-card {
+            .clients-say-grid {
+              display: grid;
+              grid-template-columns: 1fr;
+              gap: 20px;
+            }
+            @media (min-width: 640px) {
+              .clients-say-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
+              }
+            }
+            .client-review-card {
+              background: #fff;
+              border: 1px solid var(--border, #e8e8e8);
+              border-radius: 24px;
+              padding: clamp(24px, 4vw, 32px);
+              display: flex;
+              flex-direction: column;
+              gap: 20px;
+              min-height: 100%;
               opacity: 0;
-              transform: translateY(40px);
-              transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-                          transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-                          box-shadow 0.4s ease;
+              transform: translateY(24px);
+              transition:
+                opacity 0.65s ease,
+                transform 0.65s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
             }
-            .testimonial-card.is-visible {
+            .client-review-card.is-visible {
               opacity: 1;
               transform: translateY(0);
             }
-            .testimonial-card.is-visible:hover {
-              transform: translateY(-8px);
-              box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+            .client-review-card.is-visible:hover {
+              border-color: rgba(245, 166, 35, 0.45);
+              box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+              transform: translateY(-4px);
             }
-            .testimonial-card .testimonial-img {
-              transition: transform 0.6s ease;
+            .client-review-quote {
+              font-size: 48px;
+              line-height: 1;
+              color: var(--amber, #f5a623);
+              font-family: Georgia, serif;
+              opacity: 0.35;
+              user-select: none;
             }
-            .testimonial-card.is-visible:hover .testimonial-img {
-              transform: scale(1.05);
+            .client-review-stars {
+              display: flex;
+              gap: 4px;
+            }
+            .client-review-stars span {
+              width: 8px;
+              height: 8px;
+              border-radius: 50%;
+              background: var(--amber, #f5a623);
+            }
+            .client-review-text {
+              font-size: 15px;
+              color: var(--muted, #5a5a5a);
+              font-family: 'Outfit', sans-serif;
+              line-height: 1.75;
+              flex: 1;
+              margin: 0;
+            }
+            .client-review-footer {
+              display: flex;
+              align-items: center;
+              gap: 16px;
+              padding-top: 20px;
+              border-top: 1px solid var(--border, #eee);
+            }
+            .client-review-logo {
+              width: clamp(80px, 12vw, 104px);
+              height: clamp(80px, 12vw, 104px);
+              border-radius: 18px;
+              background: var(--surface, #fbfaf9);
+              border: 1px solid var(--border, #e8e8e8);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              padding: 14px;
+              flex-shrink: 0;
+            }
+            .client-review-logo img {
+              width: auto !important;
+              height: auto !important;
+              max-width: 100%;
+              max-height: clamp(48px, 8vw, 64px);
+              object-fit: contain;
+            }
+            .client-review-name {
+              font-size: 14px;
+              font-weight: 600;
+              color: var(--text, #1a1a1a);
+              font-family: 'Outfit', sans-serif;
+              letter-spacing: 0.02em;
+            }
+            .client-review-label {
+              font-size: 12px;
+              color: var(--muted, #5a5a5a);
+              font-family: 'Outfit', sans-serif;
+              margin-top: 2px;
             }
           `}</style>
 
-          {/* Header */}
-          <div className={`testimonial-header${visible ? " is-visible" : ""}`} style={{ textAlign: "center", marginBottom: 80 }}>
+          <header
+            className={`clients-say-header${visible ? " is-visible" : ""}`}
+          >
             <p
               style={{
                 fontSize: 12,
-                letterSpacing: "0.15em",
-                color: "#333",
+                letterSpacing: "0.18em",
+                color: "var(--amber, #f5a623)",
                 textTransform: "uppercase",
-                marginBottom: 24,
-                fontWeight: 600,
+                fontWeight: 700,
                 fontFamily: "'Outfit', sans-serif",
+                marginBottom: 20,
               }}
             >
-              Company Reviews
+              What Our Clients Say
             </p>
             <h2
               style={{
-                fontSize: "clamp(2.5rem, 4vw, 3.6rem)",
+                fontSize: "clamp(2rem, 4vw, 3.2rem)",
                 fontWeight: 400,
-                color: "#1a1a1a",
+                color: "var(--text, #1a1a1a)",
                 fontFamily: "'Outfit', sans-serif",
-                lineHeight: 1.25,
-                letterSpacing: "-0.01em",
-                maxWidth: 800,
-                margin: "0 auto",
+                lineHeight: 1.2,
+                letterSpacing: "-0.02em",
               }}
             >
-              Trusted by leading companies
+              Trusted by leading companies worldwide
             </h2>
-          </div>
+          </header>
 
-        {/* Company Reviews - Logo Left, Review Right */}
-        <style>{`
-          .company-review-container {
-            display: flex;
-            flex-direction: column;
-            gap: 48px;
-          }
-          .company-review-item {
-            display: grid;
-            grid-template-columns: 180px 1fr;
-            gap: 40px;
-            align-items: center;
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-                        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-                        box-shadow 0.4s ease;
-            padding: 36px;
-            border-radius: 20px;
-            background: linear-gradient(135deg, #ffffff 0%, #fafaf8 100%);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-          }
-          .company-review-item.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-          }
-          .company-review-item.is-visible:hover {
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
-            transform: translateY(-4px);
-          }
-          .company-logo-wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 160px;
-            padding: 20px;
-            background: #f8f8f6;
-            border-radius: 16px;
-            border: 1px solid rgba(0, 0, 0, 0.06);
-            transition: all 0.4s ease;
-          }
-          .company-review-item.is-visible:hover .company-logo-wrapper {
-            background: #f0f0ed;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-          }
-          .company-review-text {
-            position: relative;
-            padding: 0;
-            font-size: 16px;
-            color: #444;
-            font-family: 'Inter', sans-serif;
-            line-height: 1.7;
-            font-weight: 400;
-            letter-spacing: 0.3px;
-          }
-          @media (max-width: 768px) {
-            .company-review-item {
-              grid-template-columns: 1fr;
-              gap: 24px;
-              padding: 28px;
-            }
-            .company-logo-wrapper {
-              height: 120px;
-            }
-            .company-review-text {
-              font-size: 15px;
-            }
-            .company-review-text::before,
-            .company-review-text::after {
-              display: none;
-            }
-          }
-        `}</style>
-
-        <div className="company-review-container">
-          {companyReviews.map((company, i) => (
-            <div
-              key={i}
-              className={`company-review-item${visible ? " is-visible" : ""}`}
-              style={{
-                transitionDelay: visible ? `${0.1 + i * 0.15}s` : "0s",
-              }}
-            >
-              <div className="company-logo-wrapper">
-                <Image
-                  src={company.logo}
-                  alt="Company Logo"
-                  width={150}
-                  height={160}
+          <div className="clients-say-grid">
+            {clientReviews.map((client, i) => (
+              <article
+                key={client.name}
+                className={`client-review-card${visible ? " is-visible" : ""}`}
+                style={{
+                  transitionDelay: visible ? `${0.08 + i * 0.1}s` : "0s",
+                }}
+              >
+                <div
                   style={{
-                    objectFit: "contain",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "flex-start",
                   }}
-                />
-              </div>
-              <div className="company-review-text">
-                {company.review}
-              </div>
-            </div>
-          ))}
-        </div>
+                >
+                  <span className="client-review-quote" aria-hidden>
+                    &ldquo;
+                  </span>
+                  <div className="client-review-stars" aria-label="5 out of 5 stars">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <span key={star} />
+                    ))}
+                  </div>
+                </div>
 
+                <p className="client-review-text">{client.review}</p>
+
+                <footer className="client-review-footer">
+                  <div className="client-review-logo">
+                    <Image
+                      src={client.logo}
+                      alt={`${client.name} logo`}
+                      width={160}
+                      height={80}
+                      sizes="104px"
+                    />
+                  </div>
+                  <div>
+                    <p className="client-review-name">{client.name}</p>
+                    <p className="client-review-label">Verified client</p>
+                  </div>
+                </footer>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -4,9 +4,13 @@
 :root {
   --cream: #f5f4ee;
   --cream-2: #eeede6;
+  --surface: #fbfaf9;
   --dark: #0d0d0d;
+  --dark-elevated: #0a0a0a;
   --amber: #f5a623;
   --amber-hover: #e09510;
+  --amber-light: #fef3e2;
+  --brand-blue: #769bbe;
   --text: #1a1a1a;
   --muted: #5a5a5a;
   --border: #e0e0e0;
@@ -46,10 +50,17 @@ body {
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Outfit', 'Inter', sans-serif;
   color: var(--text);
   background: #fff;
   overflow-x: hidden;
+}
+
+@media (max-width: 767px) {
+  .section-pad {
+    padding-left: clamp(16px, 4vw, 24px) !important;
+    padding-right: clamp(16px, 4vw, 24px) !important;
+  }
 }
 
 ::-webkit-scrollbar { width: 5px; }

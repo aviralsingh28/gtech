@@ -27,7 +27,7 @@ export default function Contact() {
       id="contact"
       style={{
         background: "#ffffff",
-        padding: "clamp(80px, 12vw, 160px) clamp(20px, 5vw, 64px)"
+        padding: "clamp(48px, 8vw, 120px) clamp(16px, 4vw, 64px)"
       }}
     >
       <style>{`
@@ -38,6 +38,9 @@ export default function Contact() {
           grid-template-columns: 1fr;
           gap: 64px;
           align-items: start;
+        }
+        @media (max-width: 767px) {
+          .contact-grid { gap: 40px; }
         }
         @media (min-width: 1024px) {
           .contact-grid {
@@ -65,7 +68,7 @@ export default function Contact() {
             style={{
               fontSize: 12,
               letterSpacing: "0.15em",
-              color: "#333",
+              color: "var(--text, #1a1a1a)",
               textTransform: "uppercase",
               marginBottom: 48,
               fontFamily: "'Outfit', sans-serif",
@@ -90,7 +93,7 @@ export default function Contact() {
           <p
             style={{
               fontSize: 16,
-              color: "#666",
+              color: "var(--muted, #5a5a5a)",
               lineHeight: 1.6,
               fontFamily: "'Outfit', sans-serif",
               marginBottom: 32,
@@ -158,7 +161,7 @@ export default function Contact() {
           <p
             style={{
               fontSize: 16,
-              color: "#666",
+              color: "var(--muted, #5a5a5a)",
               fontFamily: "'Outfit', sans-serif",
               marginBottom: 40,
             }}

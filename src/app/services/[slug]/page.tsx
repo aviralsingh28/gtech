@@ -3,7 +3,9 @@ import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
+import { ServiceJsonLd } from "@/components/seo/JsonLd";
 import { servicesData } from "@/data/servicesData";
+import { createPageMetadata, pageUrl, truncateDescription } from "@/lib/seo";
 
 interface ServiceDetailPageProps {
   params: Promise<{ slug: string }>;
@@ -14,15 +16,24 @@ export async function generateMetadata({ params }: ServiceDetailPageProps): Prom
   const service = servicesData.find((s) => s.slug === slug);
 
   if (!service) {
-    return {
+    return createPageMetadata({
       title: "Service Not Found",
-    };
+      description: "The requested service could not be found.",
+      path: `/services/${slug}`,
+      noIndex: true,
+    });
   }
 
-  return {
-    title: `${service.title} – GTech Soft Solution LLC`,
-    description: service.longDescription.substring(0, 160),
-  };
+  return createPageMetadata({
+    title: service.title,
+    description: truncateDescription(service.shortDescription),
+    path: `/services/${service.slug}`,
+    keywords: [
+      service.title,
+      ...service.technologies.slice(0, 6),
+      "GTech Soft services",
+    ],
+  });
 }
 
 export async function generateStaticParams() {
@@ -39,8 +50,15 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
     notFound();
   }
 
+  const serviceUrl = pageUrl(`/services/${service.slug}`);
+
   return (
     <main>
+      <ServiceJsonLd
+        name={service.title}
+        description={truncateDescription(service.shortDescription, 300)}
+        url={serviceUrl}
+      />
       <Navbar />
       <ServiceDetailContent service={service} />
       <Footer />
@@ -72,9 +90,9 @@ function ServiceDetailContent({ service }: { service: (typeof servicesData)[0] }
           }
         }
         .service-number {
-          font-size: 120px;
+          font-size: clamp(3.5rem, 18vw, 7.5rem);
           font-weight: 700;
-          color: #f5a623;
+          color: var(--amber, #f5a623);
           line-height: 1;
           font-family: 'Outfit', sans-serif;
         }
@@ -95,11 +113,16 @@ function ServiceDetailContent({ service }: { service: (typeof servicesData)[0] }
         }
         .section-divider {
           height: 1px;
-          background: #f0f0f0;
-          margin: 80px 0;
+          background: var(--border, #e0e0e0);
+          margin: clamp(40px, 8vw, 80px) 0;
         }
         .description-section {
-          margin-bottom: 80px;
+          margin-bottom: clamp(40px, 8vw, 80px);
+        }
+        @media (max-width: 767px) {
+          .service-header { margin-bottom: 48px; gap: 24px; }
+          .feature-card { padding: 20px; }
+          .benefits-section { margin-top: 40px; }
         }
         .description-section h2 {
           font-size: 28px;
@@ -127,7 +150,7 @@ function ServiceDetailContent({ service }: { service: (typeof servicesData)[0] }
           }
         }
         .feature-card {
-          background: #FBFAF9;
+          background: var(--surface, #fbfaf9);
           padding: 28px;
           border-radius: 16px;
           border-left: 4px solid #f5a623;
@@ -161,7 +184,7 @@ function ServiceDetailContent({ service }: { service: (typeof servicesData)[0] }
           color: #fff;
         }
         .benefits-section {
-          background: #FBFAF9;
+          background: var(--surface, #fbfaf9);
           padding: clamp(40px, 5vw, 60px);
           border-radius: 24px;
           margin-top: 60px;
