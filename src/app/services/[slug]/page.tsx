@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
 import { servicesData } from "@/data/servicesData";
 
 interface ServiceDetailPageProps {
@@ -49,7 +50,9 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
 
 function ServiceDetailContent({ service }: { service: (typeof servicesData)[0] }) {
   return (
-    <section style={{ background: "#fff", minHeight: "calc(100vh - 100px)" }}>
+    <>
+      <ScrollToTop />
+      <section style={{ background: "#fff", minHeight: "calc(100vh - 100px)" }}>
       <style>{`
         .service-detail-container {
           max-width: 1200px;
@@ -273,5 +276,6 @@ function ServiceDetailContent({ service }: { service: (typeof servicesData)[0] }
         </div>
       </div>
     </section>
+    </>
   );
 }

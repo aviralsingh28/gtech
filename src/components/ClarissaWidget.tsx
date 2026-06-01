@@ -2,6 +2,8 @@
 import { useState } from "react";
 import Image from "next/image";
 
+const PHONE_NUMBER = "+971524955744"; // Replace with your actual phone number
+
 export default function ClarissaWidget() {
   const [open, setOpen] = useState(true);
 
@@ -64,12 +66,12 @@ export default function ClarissaWidget() {
           to { opacity: 1; transform: translateY(0); }
         }
         @media (max-width: 480px) {
-          .clarissa-card { gap: 10px !important; border-radius: 20px !important; padding: 8px 16px 8px 8px !important; }
-          .clarissa-avatar { width: 68px !important; height: 120px !important; border-radius: 14px !important; }
-          .clarissa-cta { padding: 8px 12px !important; font-size: 12px !important; }
-          .clarissa-arrow { width: 34px !important; height: 34px !important; }
-          .clarissa-title { font-size: 14px !important; }
-          .clarissa-role { font-size: 8px !important; }
+          .clarissa-card { gap: 8px !important; border-radius: 16px !important; padding: 6px 12px 6px 6px !important; }
+          .clarissa-avatar { width: 56px !important; height: 80px !important; border-radius: 10px !important; }
+          .clarissa-cta { padding: 6px 10px !important; font-size: 11px !important; }
+          .clarissa-arrow { width: 32px !important; height: 32px !important; }
+          .clarissa-title { font-size: 12px !important; }
+          .clarissa-role { font-size: 7px !important; }
         }
       `}</style>
 
@@ -113,7 +115,8 @@ export default function ClarissaWidget() {
 
         {/* Buttons Container */}
         <div style={{ display: "flex", gap: 10, alignItems: "center", marginTop: 18 }}>
-          <button
+          <a
+            href={`tel:${PHONE_NUMBER.replace(/[^0-9+]/g, "")}`}
             className="clarissa-cta"
             style={{
               background: "#333",
@@ -127,14 +130,17 @@ export default function ClarissaWidget() {
               fontFamily: "'Inter', sans-serif",
               transition: "background 0.2s",
               whiteSpace: "nowrap",
+              textDecoration: "none",
+              display: "block",
             }}
             onMouseEnter={(e) => (e.currentTarget.style.background = "#222")}
             onMouseLeave={(e) => (e.currentTarget.style.background = "#333")}
           >
             Book 15 min Call
-          </button>
+          </a>
 
-          <button
+          <a
+            href={`tel:${PHONE_NUMBER.replace(/[^0-9+]/g, "")}`}
             className="clarissa-arrow"
             style={{
               width: 38,
@@ -148,15 +154,17 @@ export default function ClarissaWidget() {
               justifyContent: "center",
               transition: "background 0.2s",
               flexShrink: 0,
+              textDecoration: "none",
             }}
             onMouseEnter={(e) => (e.currentTarget.style.background = "#e09510")}
             onMouseLeave={(e) => (e.currentTarget.style.background = "#f5a623")}
+            title="Call us"
           >
             <svg width="15" height="15" viewBox="0 0 14 14" fill="none">
               {/* Dark Stroke Arrow to match design */}
               <path d="M2 12L12 2M12 2H5M12 2V9" stroke="#111" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-          </button>
+          </a>
         </div>
       </div>
     </div>

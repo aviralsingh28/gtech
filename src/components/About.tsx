@@ -181,26 +181,6 @@ export default function About() {
             font-weight: 400;
             letter-spacing: 0.3px;
           }
-          .company-review-text::before {
-            content: '"';
-            position: absolute;
-            left: -16px;
-            top: -8px;
-            font-size: 48px;
-            color: #d0d0d0;
-            font-family: Georgia, serif;
-            font-weight: bold;
-          }
-          .company-review-text::after {
-            content: '"';
-            position: absolute;
-            right: -8px;
-            bottom: -16px;
-            font-size: 48px;
-            color: #d0d0d0;
-            font-family: Georgia, serif;
-            font-weight: bold;
-          }
           @media (max-width: 768px) {
             .company-review-item {
               grid-template-columns: 1fr;

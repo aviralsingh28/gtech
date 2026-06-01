@@ -10,6 +10,7 @@ export const roadmapData = [
       "Project scope definition",
       "Goal alignment with stakeholders",
       "Detailed documentation",
+    
     ],
   },
   {
@@ -49,6 +50,7 @@ export const roadmapData = [
       "Security checks and compliance",
       "Production deployment",
       "Monitoring and ongoing support",
+    
     ],
   },
 ];

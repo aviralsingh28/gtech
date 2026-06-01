@@ -6,31 +6,36 @@ export default function CareerHero() {
       style={{
         position: "relative",
         background: "#fff",
-        padding: "clamp(80px, 11vw, 104px) clamp(12px, 3vw, 24px) clamp(12px, 3vw, 24px)",
+        padding: "clamp(32px, 6vw, 48px) clamp(12px, 3vw, 24px) clamp(12px, 3vw, 24px)",
+        marginTop: "80px",
       }}
     >
       <style>{`
         .career-hero-card {
           position: relative;
-          height: calc(100svh - 128px);
-          min-height: 560px;
+          height: calc(100svh - 80px - clamp(32px, 6vw, 48px) - clamp(32px, 6vw, 48px));
+          min-height: 500px;
           border-radius: 32px;
           overflow: hidden;
           background: linear-gradient(135deg, #FBFAF9 0%, #f5a623 100%);
-          padding: clamp(64px, 11vw, 140px) clamp(24px, 6vw, 80px);
+          padding: clamp(40px, 8vw, 100px) clamp(24px, 5vw, 80px);
           display: flex;
           flex-direction: column;
           justify-content: center;
         }
         @media (max-width: 768px) {
-          .career-hero-card { border-radius: 24px; }
+          .career-hero-card { 
+            border-radius: 24px;
+            height: auto;
+            min-height: 400px;
+          }
         }
         .career-hero-grid {
           max-width: 1360px;
           margin: 0 auto;
           display: grid;
           grid-template-columns: 1fr;
-          gap: 40px;
+          gap: 24px;
           align-items: end;
         }
         @media (max-width: 1023px) {

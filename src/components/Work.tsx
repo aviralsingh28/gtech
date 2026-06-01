@@ -175,15 +175,15 @@ export default function Work() {
   }, []);
 
   return (
-    <section id="work" style={{ background: "#FFFFFF", padding: "0 clamp(12px, 3vw, 24px) 0" }}>
+    <section id="work" style={{ background: "#FFFFFF", padding: "0 clamp(8px, 2vw, 24px) 0" }}>
       <div
         style={{
           background: "#1a1b1e",
           borderRadius: 32,
-          padding: "clamp(72px, 12vw, 160px) 0",
+          padding: "clamp(48px, 10vw, 160px) 0",
         }}
       >
-        <div style={{ maxWidth: 1360, margin: "0 auto", padding: "0 clamp(20px, 5vw, 64px)" }}>
+        <div style={{ maxWidth: 1360, margin: "0 auto", padding: "0 clamp(16px, 4vw, 64px)" }}>
 
           <style>{`
             .work-header h2,
@@ -235,16 +235,16 @@ export default function Work() {
           `}</style>
 
           {/* Header */}
-          <div ref={headerRef} className={`work-header${headerVisible ? " is-visible" : ""}`} style={{ textAlign: "center", marginBottom: 120 }}>
+          <div ref={headerRef} className={`work-header${headerVisible ? " is-visible" : ""}`} style={{ textAlign: "center", marginBottom: "clamp(60px, 12vw, 120px)" }}>
             <h2
               style={{
-                fontSize: "clamp(2.4rem, 4vw, 3.2rem)",
+                fontSize: "clamp(1.8rem, 5vw, 3.2rem)",
                 fontWeight: 400,
                 color: "#ffffff",
                 fontFamily: "'Outfit', sans-serif",
                 lineHeight: 1.25,
                 letterSpacing: "-0.01em",
-                marginBottom: 32,
+                marginBottom: "clamp(16px, 4vw, 32px)",
               }}
             >
               Products we&rsquo;ve built,
@@ -253,12 +253,13 @@ export default function Work() {
             </h2>
             <p
               style={{
-                fontSize: 15,
+                fontSize: "clamp(13px, 3vw, 15px)",
                 color: "#888",
                 fontFamily: "'Outfit', sans-serif",
                 maxWidth: 700,
                 margin: "0 auto",
                 lineHeight: 1.6,
+                padding: "0 clamp(12px, 2vw, 20px)",
               }}
             >
               Enterprise CRM, banking systems, multi-level analytics — engineered to scale across
@@ -271,25 +272,30 @@ export default function Work() {
           .work-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 64px;
+            gap: clamp(32px, 8vw, 64px);
             align-items: start;
+          }
+          @media (min-width: 640px) {
+            .work-grid {
+              gap: clamp(40px, 8vw, 64px);
+            }
           }
           @media (min-width: 768px) {
             .work-grid {
               grid-template-columns: repeat(2, 1fr);
-              row-gap: 120px;
+              row-gap: clamp(60px, 12vw, 120px);
               column-gap: 40px;
             }
             .grid-wide {
               grid-column: span 2;
             }
             .grid-stagger {
-              margin-top: 160px;
+              margin-top: clamp(80px, 12vw, 160px);
             }
           }
         `}</style>
 
-          <div className="work-grid" style={{ marginBottom: 120 }}>
+          <div className="work-grid" style={{ marginBottom: "clamp(40px, 8vw, 120px)" }}>
             {projects.map((p, i) => (
               <div
                 key={i}
@@ -308,12 +314,12 @@ export default function Work() {
                     overflow: "hidden",
                     position: "relative",
                     width: "100%",
-                    backgroundColor: "#1a1b1e", // Seamless background
+                    backgroundColor: "#1a1b1e",
                     aspectRatio: p.wide ? "16/10" : "4/3",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    padding: "clamp(24px, 5vw, 40px)", // Responsive padding for mockups
+                    padding: "clamp(16px, 4vw, 40px)",
                   }}
                 >
                   <Image
@@ -335,10 +341,11 @@ export default function Work() {
                 <div
                   style={{
                     display: "grid",
-                    gridTemplateColumns: "repeat(3, 1fr)",
-                    gap: 16,
-                    marginTop: 24,
+                    gridTemplateColumns: "1fr",
+                    gap: "clamp(12px, 3vw, 16px)",
+                    marginTop: "clamp(16px, 4vw, 24px)",
                   }}
+                  className="stats-grid"
                 >
                   {p.stats.map((stat, si) => (
                     <div
@@ -346,14 +353,14 @@ export default function Work() {
                       style={{
                         background: "#333538",
                         borderRadius: 16,
-                        padding: "24px",
+                        padding: "clamp(16px, 4vw, 24px)",
                         display: "flex",
                         flexDirection: "column",
                       }}
                     >
                       <h4
                         style={{
-                          fontSize: "clamp(1.5rem, 2.5vw, 2rem)",
+                          fontSize: "clamp(1.2rem, 4vw, 2rem)",
                           color: "#fff",
                           fontFamily: "'Inter', sans-serif",
                           fontWeight: 400,
@@ -365,7 +372,7 @@ export default function Work() {
                       </h4>
                       <p
                         style={{
-                          fontSize: 13,
+                          fontSize: "clamp(11px, 2vw, 13px)",
                           color: "#999",
                           fontFamily: "'Inter', sans-serif",
                           marginTop: 8,
@@ -377,15 +384,23 @@ export default function Work() {
                   ))}
                 </div>
 
+                <style>{`
+                  @media (min-width: 640px) {
+                    .stats-grid {
+                      grid-template-columns: repeat(3, 1fr) !important;
+                    }
+                  }
+                `}</style>
+
                 {/* Title & Pills */}
-                <div style={{ marginTop: 32 }}>
+                <div style={{ marginTop: "clamp(20px, 5vw, 32px)" }}>
                   <p
                     style={{
-                      fontSize: 14,
+                      fontSize: "clamp(12px, 2vw, 14px)",
                       color: "#FF9800",
                       fontWeight: 600,
                       fontFamily: "'Inter', sans-serif",
-                      marginBottom: 12,
+                      marginBottom: "clamp(8px, 2vw, 12px)",
                       letterSpacing: "0.05em",
                     }}
                   >
@@ -393,33 +408,36 @@ export default function Work() {
                   </p>
                   <h3
                     style={{
-                      fontSize: "clamp(1.2rem, 2vw, 1.8rem)",
+                      fontSize: "clamp(1rem, 3vw, 1.8rem)",
                       color: "#fff",
                       fontWeight: 500,
                       fontFamily: "'Inter', sans-serif",
-                      marginBottom: 24,
+                      marginBottom: "clamp(16px, 4vw, 24px)",
+                      lineHeight: 1.3,
                     }}
                   >
                     {p.title}
                   </h3>
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: "clamp(8px, 2vw, 12px)" }}>
                     {p.pills.map((pill, pi) => (
                       <div
                         key={pi}
                         className="work-pill"
                         style={{
-                          padding: "8px 16px",
+                          padding: "clamp(6px, 1.5vw, 8px) clamp(12px, 2vw, 16px)",
                           borderRadius: 100,
                           border: "1px solid #333538",
                           background: "transparent",
+                          display: "flex",
+                          alignItems: "center",
+                          minHeight: "28px",
                         }}
                       >
                         <p
                           style={{
-                            fontSize: 12,
+                            fontSize: "clamp(11px, 1.8vw, 12px)",
                             color: "#aaa",
                             fontFamily: "'Inter', sans-serif",
-                            whiteSpace: "nowrap",
                           }}
                         >
                           {pill}
@@ -433,14 +451,14 @@ export default function Work() {
           </div>
 
           {/* See All Projects Button */}
-          <div ref={ctaRef} className={`work-cta${ctaVisible ? " is-visible" : ""}`} style={{ display: "flex", justifyContent: "center" }}>
+          <div ref={ctaRef} className={`work-cta${ctaVisible ? " is-visible" : ""}`} style={{ display: "flex", justifyContent: "center", marginTop: "clamp(60px, 12vw, 120px)" }}>
             <div
               style={{
                 display: "flex",
                 alignItems: "center",
                 background: "#333538",
                 borderRadius: "100px",
-                padding: "4px 4px 4px 24px",
+                padding: "4px 4px 4px clamp(16px, 4vw, 24px)",
                 cursor: "pointer",
                 transition: "transform 0.2s",
               }}
@@ -451,25 +469,27 @@ export default function Work() {
                 style={{
                   color: "#fff",
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: 14,
+                  fontSize: "clamp(12px, 2vw, 14px)",
                   fontWeight: 500,
-                  marginRight: 16,
+                  marginRight: "clamp(12px, 3vw, 16px)",
+                  whiteSpace: "nowrap",
                 }}
               >
                 See all Projects
               </span>
               <div
                 style={{
-                  width: 40,
-                  height: 40,
+                  width: "clamp(32px, 8vw, 40px)",
+                  height: "clamp(32px, 8vw, 40px)",
                   borderRadius: "50%",
-                  background: "#FF9800", // pure orange matching figma
+                  background: "#FF9800",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
+                  flexShrink: 0,
                 }}
               >
-                <ArrowUpRight size={20} color="#000" />
+                <ArrowUpRight size="clamp(16, 4vw, 20)" color="#000" />
               </div>
             </div>
           </div>

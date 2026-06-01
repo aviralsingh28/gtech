@@ -1,11 +1,12 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
 export default function IndustriesApply() {
+  const router = useRouter();
+
   const handleGetStarted = () => {
-    const contactSection = document.getElementById("contact");
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: "smooth" });
-    }
+    router.push("/contact");
   };
 
   return (
@@ -194,24 +195,35 @@ export default function IndustriesApply() {
             </button>
           </div>
 
-          <div className="apply-metrics">
-            <div className="metric-box">
-              <div className="metric-number">500+</div>
-              <div className="metric-label">Hotels & Resorts Powered</div>
-            </div>
-            <div className="metric-box">
-              <div className="metric-number">50M+</div>
-              <div className="metric-label">Bookings Processed</div>
-            </div>
-            <div className="metric-box">
-              <div className="metric-number">98.9%</div>
-              <div className="metric-label">System Uptime</div>
-            </div>
-            <div className="metric-box">
-              <div className="metric-number">25+</div>
-              <div className="metric-label">Countries Served</div>
-            </div>
-          </div>
+<div className="apply-metrics">
+  <div className="metric-box">
+    <div className="metric-number">24/7</div>
+    <div className="metric-label">
+      Dedicated support and proactive system monitoring
+    </div>
+  </div>
+
+  <div className="metric-box">
+    <div className="metric-number">Custom</div>
+    <div className="metric-label">
+      Tailored travel technology solutions built around your business needs
+    </div>
+  </div>
+
+  <div className="metric-box">
+    <div className="metric-number">Secure</div>
+    <div className="metric-label">
+      Enterprise-grade security, compliance, and data protection practices
+    </div>
+  </div>
+
+  <div className="metric-box">
+    <div className="metric-number">Scalable</div>
+    <div className="metric-label">
+      Architecture designed to support business growth and global expansion
+    </div>
+  </div>
+</div>
         </div>
       </div>
     </section>

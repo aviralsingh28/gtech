@@ -1,17 +1,41 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
+import { servicesData } from "@/data/servicesData";
 
 const cols = {
-  Solutions: [
-    "Custom Software Development",
-    "Web & Mobile Applications",
-    "Cloud & DevOps",
-    "Cybersecurity",
-    "ERP & CRM Systems",
-    "IoT & Data Systems",
-    "AI & Analytics",
+  Services: [
+    "Software Development",
+    "ERP Solutions",
+    "Cyber security",
+    "Mobile & Web Applications",
+    "Cloud Solutions",
+    "IoT Development",
+    "UI/UX Design",
   ],
   Company: ["About us", "Why us", "Team", "Careers"],
+};
+
+// Map links to their routes
+const getLinkPath = (heading: string, link: string): string => {
+  if (heading === "Services") {
+    // Find the service and use its actual slug
+    const service = servicesData.find(
+      (s) => s.title.toLowerCase() === link.toLowerCase()
+    );
+    if (service) {
+      return `/services/${service.slug}`;
+    }
+  }
+  
+  const companyLinks: Record<string, string> = {
+    "About us": "/about",
+    "Why us": "/about",
+    "Team": "/about",
+    "Careers": "/career",
+  };
+  
+  return companyLinks[link] || "#";
 };
 
 const StarIcon = () => (
@@ -132,20 +156,21 @@ export default function Footer() {
                   <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 14 }}>
                     {links.map((link) => (
                       <li key={link}>
-                        <a
-                          href="#"
+                        <Link
+                          href={getLinkPath(heading, link)}
                           style={{
                             fontSize: 14,
                             color: "#888",
                             textDecoration: "none",
                             fontFamily: "'Outfit', sans-serif",
                             transition: "color 0.2s",
+                            display: "inline-block",
                           }}
                           onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
                           onMouseLeave={(e) => (e.currentTarget.style.color = "#888")}
                         >
                           {link}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>

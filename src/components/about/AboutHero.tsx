@@ -6,31 +6,37 @@ export default function AboutHero() {
       style={{
         position: "relative",
         background: "#fff",
-        padding: "clamp(80px, 11vw, 104px) clamp(12px, 3vw, 24px) clamp(12px, 3vw, 24px)",
+        padding: "clamp(32px, 6vw, 48px) clamp(12px, 3vw, 24px) clamp(12px, 3vw, 24px)",
+        paddingTop: "clamp(32px, 6vw, 48px)",
+        marginTop: "80px",
       }}
     >
       <style>{`
         .about-hero-card {
           position: relative;
-          height: calc(100svh - 128px);
-          min-height: 560px;
+          height: calc(100svh - 80px - clamp(32px, 6vw, 48px) - clamp(32px, 6vw, 48px));
+          min-height: 500px;
           border-radius: 32px;
           overflow: hidden;
           background: #FBFAF9;
-          padding: clamp(64px, 11vw, 140px) clamp(24px, 6vw, 80px);
+          padding: clamp(40px, 8vw, 100px) clamp(24px, 5vw, 80px);
           display: flex;
           flex-direction: column;
           justify-content: flex-end;
         }
         @media (max-width: 768px) {
-          .about-hero-card { border-radius: 24px; }
+          .about-hero-card { 
+            border-radius: 24px;
+            height: auto;
+            min-height: 400px;
+          }
         }
         .about-hero-grid {
           max-width: 1360px;
           margin: 0 auto;
           display: grid;
           grid-template-columns: 1fr;
-          gap: 40px;
+          gap: 24px;
           align-items: end;
         }
         @media (min-width: 1024px) {
