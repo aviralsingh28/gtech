@@ -335,6 +335,31 @@ export default function Footer() {
                 >
                   info@gtechsoftsolution.com
                 </a>
+
+                <div style={{ display: "flex", gap: 18, marginTop: 16, alignItems: "center" }}>
+  <Image
+    src="/images/footer-images/image-8.png"
+    alt="Footer Logo 1"
+    width={180}
+    height={120}
+      style={{
+    objectFit: "contain",
+    height: "auto",
+    borderRadius: "12px",
+  }}
+  />
+<Image
+  src="/images/footer-images/image-9.png"
+  alt="Footer Logo 2"
+  width={120}
+  height={70}
+  style={{
+    objectFit: "contain",
+    height: "auto",
+    borderRadius: "12px",
+  }}
+/>
+</div>
               </div>
             </div>
 
