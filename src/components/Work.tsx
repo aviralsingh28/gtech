@@ -451,7 +451,7 @@ export default function Work() {
           </div>
 
           {/* See All Projects Button */}
-          <div ref={ctaRef} className={`work-cta${ctaVisible ? " is-visible" : ""}`} style={{ display: "flex", justifyContent: "center", marginTop: "clamp(60px, 12vw, 120px)" }}>
+          {/* <div ref={ctaRef} className={`work-cta${ctaVisible ? " is-visible" : ""}`} style={{ display: "flex", justifyContent: "center", marginTop: "clamp(60px, 12vw, 120px)" }}>
             <div
               style={{
                 display: "flex",
@@ -492,7 +492,7 @@ export default function Work() {
                 <ArrowUpRight size="clamp(16, 4vw, 20)" color="#000" />
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

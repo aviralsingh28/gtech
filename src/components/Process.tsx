@@ -17,13 +17,13 @@ const steps = [
   {
     title: "Development & Testing",
     desc: "Building with quality",
-    image: "/images/Process/Onboarding.svg", // Re-using Onboarding as per Figma mockup duplicate
+    image: "/images/Process/Onboarding.svg",
     pills: ["Frontend & backend", "Unit & integration", "E2E testing", "Load testing"],
   },
   {
     title: "Deployment & Monitoring",
     desc: "Shipping with confidence",
-    image: "/images/Process/Onboarding.svg", // Re-using Onboarding as per Figma mockup duplicate
+    image: "/images/Process/Onboarding.svg",
     pills: ["CI/CD pipelines", "Canary deploy", "Logs & metrics", "Performance tuning"],
   },
 ];
@@ -86,12 +86,12 @@ export default function Process() {
             width: 14px;
             height: 14px;
             border-radius: 50%;
-            background: var(--amber, #f5a623);
+            background: #f5a623;
             flex-shrink: 0;
           }
           .process-timeline-label {
             font-size: 13px;
-            color: var(--muted, #5a5a5a);
+            color: #5a5a5a;
             font-family: 'Outfit', sans-serif;
             white-space: nowrap;
           }
@@ -129,7 +129,7 @@ export default function Process() {
           </div>
         </div>
 
-        {/* Cards Marquee */}
+        {/* Cards Marquee - Compact & Complete */}
         <style>{`
           @keyframes process-scroll-ltr {
             0% { transform: translateX(-50%); }
@@ -143,7 +143,7 @@ export default function Process() {
           }
           .process-track {
             display: flex;
-            gap: 24px;
+            gap: 20px;
             width: max-content;
             animation: process-scroll-ltr 40s linear infinite;
           }
@@ -152,24 +152,35 @@ export default function Process() {
           }
           .process-card {
             flex: 0 0 auto;
-            width: 300px;
+            width: 280px;
             background: #fafafa;
-            border-radius: 24px;
-            padding: 24px;
+            border-radius: 20px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
-            min-height: 400px;
+            min-height: 360px;
           }
-          @media (min-width: 768px) {
-            .process-card { width: 320px; min-height: 420px; }
+          .process-pill-text {
+            font-size: 11px;
+            white-space: nowrap;
+          }
+          @media (max-width: 768px) {
+            .process-card {
+              width: 260px;
+              min-height: 340px;
+              padding: 18px;
+            }
           }
           @media (max-width: 640px) {
             .process-card {
-              width: min(300px, 85vw);
-              min-height: 360px;
-              padding: 22px;
+              width: 240px;
+              min-height: 320px;
+              padding: 16px;
             }
-            .process-pill-text { white-space: normal !important; }
+            .process-pill-text {
+              white-space: normal !important;
+              font-size: 10px;
+            }
           }
         `}</style>
 
@@ -177,28 +188,28 @@ export default function Process() {
           <div className="process-track">
             {[...steps, ...steps].map((step, i) => (
               <div key={i} className="process-card" aria-hidden={i >= steps.length}>
-                {/* Top Icon */}
+                {/* Icon */}
                 <div
                   style={{
-                    width: 56,
-                    height: 56,
+                    width: 48,
+                    height: 48,
                     borderRadius: "50%",
                     border: "1px solid #ebebeb",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     background: "#fff",
-                    marginBottom: "auto",
+                    marginBottom: 20,
                   }}
                 >
-                  <Image src={step.image} alt={step.title} width={24} height={24} style={{ objectFit: "contain" }} />
+                  <Image src={step.image} alt={step.title} width={22} height={22} style={{ objectFit: "contain" }} />
                 </div>
 
-                {/* Text Block */}
-                <div style={{ marginBottom: 24 }}>
+                {/* Text */}
+                <div style={{ marginBottom: 20 }}>
                   <h3
                     style={{
-                      fontSize: 18,
+                      fontSize: 24,
                       fontWeight: 600,
                       color: "#111",
                       fontFamily: "'Outfit', sans-serif",
@@ -208,24 +219,24 @@ export default function Process() {
                   >
                     {step.title}
                   </h3>
-                  <p style={{ fontSize: 14, color: "var(--muted, #5a5a5a)", fontFamily: "'Outfit', sans-serif" }}>
+                  <p style={{ fontSize: 13, color: "#5a5a5a", fontFamily: "'Outfit', sans-serif", lineHeight: 1.4 }}>
                     {step.desc}
                   </p>
                 </div>
 
-                {/* Pills Loop */}
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                {/* Pills */}
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: "auto" }}>
                   {step.pills.map((pill, pi) => (
                     <div
                       key={pi}
                       style={{
                         border: "1px solid #e2e2e2",
                         borderRadius: 100,
-                        padding: "6px 14px",
+                        padding: "4px 12px",
                         background: "#fff",
                       }}
                     >
-                      <p className="process-pill-text" style={{ fontSize: 11, color: "var(--muted, #5a5a5a)", fontFamily: "'Outfit', sans-serif", fontWeight: 500, whiteSpace: "nowrap" }}>
+                      <p className="process-pill-text" style={{ color: "#5a5a5a", fontFamily: "'Outfit', sans-serif", fontWeight: 500 }}>
                         {pill}
                       </p>
                     </div>
@@ -239,4 +250,3 @@ export default function Process() {
     </section>
   );
 }
-

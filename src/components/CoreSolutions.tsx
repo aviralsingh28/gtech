@@ -15,7 +15,7 @@ const solutions = [
       "Automated sales & service workflows",
       "Advanced analytics & forecasting",
     ],
-    accent: "var(--text, #1a1a1a)",
+    accent: "var(--amber, #f5a623)",
   },
   {
     title: "Multi-Level Reporting Systems",
@@ -23,8 +23,16 @@ const solutions = [
       "Hierarchical dashboards for teams & departments",
       "Drill-down KPIs and exports",
     ],
-    accent: "var(--brand-blue, #769bbe)",
+    accent: "var(--amber, #f5a623)",
   },
+];
+
+const additionalFeatures = [
+  "Automated financial workflows",
+  "Secure transaction processing",
+  "Automated sales & service workflows",
+  "Advanced analytics & forecasting",
+  "Hierarchical dashboards for teams & departments",
 ];
 
 export default function CoreSolutions() {
@@ -84,6 +92,7 @@ export default function CoreSolutions() {
               border-radius: 24px;
               padding: clamp(24px, 4vw, 40px);
               transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+              text-align: center;
             }
             .home-core-card:hover {
               background: rgba(255, 255, 255, 0.07);
@@ -105,28 +114,78 @@ export default function CoreSolutions() {
               display: flex;
               flex-direction: column;
               gap: 12px;
+              text-align: center;
             }
             .home-core-points li {
               font-size: 14px;
               color: rgba(255, 255, 255, 0.75);
               font-family: 'Outfit', sans-serif;
               line-height: 1.6;
-              padding-left: 18px;
+              padding-left: 0;
               position: relative;
             }
             .home-core-points li::before {
-              content: "";
-              position: absolute;
-              left: 0;
-              top: 9px;
+              display: none;
+            }
+            
+            /* Additional features styles */
+            .additional-features {
+              margin-top: 48px;
+              padding-top: 48px;
+              border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            .features-grid {
+              display: grid;
+              grid-template-columns: 1fr;
+              gap: 16px;
+              margin-top: 24px;
+            }
+            @media (min-width: 768px) {
+              .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+              }
+            }
+            .feature-item {
+              background: rgba(255, 255, 255, 0.03);
+              border: 1px solid rgba(255, 255, 255, 0.06);
+              border-radius: 16px;
+              padding: 16px 20px;
+              font-size: 14px;
+              color: rgba(255, 255, 255, 0.7);
+              font-family: 'Outfit', sans-serif;
+              transition: all 0.3s ease;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 12px;
+              text-align: center;
+            }
+            .feature-item:hover {
+              background: rgba(255, 255, 255, 0.05);
+              border-color: rgba(245, 166, 35, 0.2);
+              transform: translateX(4px);
+            }
+            .feature-dot {
               width: 6px;
               height: 6px;
               border-radius: 50%;
               background: var(--amber, #f5a623);
+              flex-shrink: 0;
+            }
+            .single-center {
+              display: flex;
+              justify-content: center;
+              grid-column: 1 / -1;
+            }
+            
+            /* Center header content */
+            .header-content {
+              text-align: center;
+              margin: 0 auto;
             }
           `}</style>
 
-          <div style={{ maxWidth: 720 }}>
+          <div className="header-content" style={{ maxWidth: 820, margin: "0 auto" }}>
             <p
               style={{
                 fontSize: 12,
@@ -160,7 +219,9 @@ export default function CoreSolutions() {
                 fontFamily: "'Outfit', sans-serif",
                 lineHeight: 1.7,
                 marginTop: 16,
-                maxWidth: 560,
+                maxWidth: 620,
+                marginLeft: "auto",
+                marginRight: "auto",
               }}
             >
               Enterprise-grade platforms tailored for finance, sales, and
@@ -197,6 +258,36 @@ export default function CoreSolutions() {
               </article>
             ))}
           </div>
+
+          {/* Additional Features Section - 2-2-1 centered layout */}
+          <div className="additional-features">
+            <div className="features-grid">
+              {/* First row - 2 items */}
+              {additionalFeatures.slice(0, 2).map((feature, idx) => (
+                <div key={idx} className="feature-item">
+                  <span className="feature-dot" />
+                  {feature}
+                </div>
+              ))}
+              
+              {/* Second row - 2 items */}
+              {additionalFeatures.slice(2, 4).map((feature, idx) => (
+                <div key={idx + 2} className="feature-item">
+                  <span className="feature-dot" />
+                  {feature}
+                </div>
+              ))}
+              
+              {/* Third row - 1 item centered */}
+              <div className="single-center">
+                <div className="feature-item" style={{ width: "auto", minWidth: "280px" }}>
+                  <span className="feature-dot" />
+                  {additionalFeatures[4]}
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>

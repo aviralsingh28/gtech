@@ -147,22 +147,15 @@ export default function About() {
             .client-review-footer {
               display: flex;
               align-items: center;
+              justify-content: space-between;
               gap: 16px;
               padding-top: 20px;
               border-top: 1px solid var(--border, #eee);
             }
-            .client-review-logo {
-              width: clamp(80px, 12vw, 104px);
-              height: clamp(80px, 12vw, 104px);
-              border-radius: 18px;
-              background: var(--surface, #fbfaf9);
-              border: 1px solid var(--border, #e8e8e8);
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              padding: 14px;
-              flex-shrink: 0;
+            .client-review-details {
+              text-align: right;
             }
+        
             .client-review-logo img {
               width: auto !important;
               height: auto !important;
@@ -253,7 +246,7 @@ export default function About() {
                       sizes="104px"
                     />
                   </div>
-                  <div>
+                  <div className="client-review-details">
                     <p className="client-review-name">{client.name}</p>
                     <p className="client-review-label">Verified client</p>
                   </div>
