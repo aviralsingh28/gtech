@@ -2,7 +2,7 @@
 
 export default function CareersApply() {
   const handleApplyClick = () => {
-    const careersEmail = "careers@gtechsoft.com";
+    const careersEmail = "info@gtechsoftsolution.com";
     const subject = encodeURIComponent(
       "Career Application - GTech Soft Solution LLC"
     );
@@ -231,8 +231,8 @@ export default function CareersApply() {
                 </svg>
                 Send Your Application
               </button>
-              <a href="mailto:careers@gtechsoft.com" className="apply-email">
-                careers@gtechsoft.com
+              <a href="mailto:info@gtechsoftsolution.com" className="apply-email">
+                info@gtechsoftsolution.com
               </a>
             </div>
           </div>
