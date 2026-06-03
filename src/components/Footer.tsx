@@ -283,6 +283,32 @@ export default function Footer() {
               0% { transform: translateX(0); }
               100% { transform: translateX(-50%); }
             }
+            
+            /* Responsive image styles */
+            .footer-images-container {
+              display: flex;
+              gap: 18px;
+              margin-top: 16px;
+              align-items: center;
+              flex-wrap: wrap;
+            }
+            .footer-image-wrapper {
+              position: relative;
+              flex-shrink: 0;
+            }
+            .footer-image-1 {
+              width: clamp(120px, 30vw, 180px);
+              height: auto;
+            }
+            .footer-image-2 {
+              width: clamp(90px, 25vw, 140px);
+              height: auto;
+            }
+            @media (max-width: 480px) {
+              .footer-images-container {
+                gap: 12px;
+              }
+            }
           `}</style>
 
           <div className="footer-container">
@@ -293,12 +319,17 @@ export default function Footer() {
                 alt="GTechSoft"
                 width={180}
                 height={45}
-                style={{ objectFit: "contain", marginBottom: 12 }}
+                style={{ 
+                  objectFit: "contain", 
+                  marginBottom: 12,
+                  width: "clamp(140px, 35vw, 180px)",
+                  height: "auto"
+                }}
               />
 
               <p
                 style={{
-                  fontSize: "1rem",
+                  fontSize: "clamp(0.875rem, 4vw, 1rem)",
                   color: "#aaa",
                   fontFamily: "'Outfit', sans-serif",
                   lineHeight: 1.55,
@@ -313,7 +344,7 @@ export default function Footer() {
                 <a
                   href="tel:+971524855744"
                   style={{
-                    fontSize: "clamp(1.2rem, 2vw, 1.6rem)",
+                    fontSize: "clamp(1.1rem, 5vw, 1.6rem)",
                     color: "#ffffff",
                     fontFamily: "'Outfit', sans-serif",
                     textDecoration: "none",
@@ -326,7 +357,7 @@ export default function Footer() {
                 <a
                   href="mailto:info@gtechsoftsolution.com"
                   style={{
-                    fontSize: "clamp(1.1rem, 1.8vw, 1.3rem)",
+                    fontSize: "clamp(1rem, 4vw, 1.3rem)",
                     color: "#f5a623",
                     fontFamily: "'Outfit', sans-serif",
                     fontWeight: 500,
@@ -336,30 +367,40 @@ export default function Footer() {
                   info@gtechsoftsolution.com
                 </a>
 
-                <div style={{ display: "flex", gap: 18, marginTop: 16, alignItems: "center" }}>
-  <Image
-    src="/images/footer-images/image-8.png"
-    alt="Footer Logo 1"
-    width={180}
-    height={120}
-      style={{
-    objectFit: "contain",
-    height: "auto",
-    borderRadius: "12px",
-  }}
-  />
-<Image
-  src="/images/footer-images/image-9.png"
-  alt="Footer Logo 2"
-  width={140}
-  height={70}
-  style={{
-    objectFit: "contain",
-    height: "auto",
-    borderRadius: "12px",
-  }}
-/>
-</div>
+                <div className="footer-images-container">
+                  <div className="footer-image-wrapper">
+                    <Image
+                      src="/images/footer-images/image-8.png"
+                      alt="Footer Logo 1"
+                      width={180}
+                      height={120}
+                      className="footer-image-1"
+                      style={{
+                        objectFit: "contain",
+                        height: "auto",
+                        borderRadius: "12px",
+                        width: "100%",
+                        maxWidth: "clamp(120px, 30vw, 180px)"
+                      }}
+                    />
+                  </div>
+                  <div className="footer-image-wrapper">
+                    <Image
+                      src="/images/footer-images/image-9.png"
+                      alt="Footer Logo 2"
+                      width={140}
+                      height={70}
+                      className="footer-image-2"
+                      style={{
+                        objectFit: "contain",
+                        height: "auto",
+                        borderRadius: "12px",
+                        width: "100%",
+                        maxWidth: "clamp(90px, 25vw, 140px)"
+                      }}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -421,7 +462,7 @@ export default function Footer() {
                   <div key={i} style={{ display: "flex", alignItems: "center", gap: 32 }}>
                     <span
                       style={{
-                        fontSize: "clamp(1.8rem, 5vw, 3.2rem)",
+                        fontSize: "clamp(1.2rem, 4vw, 3.2rem)",
                         fontWeight: 600,
                         fontFamily: "'Outfit', sans-serif",
                         color: "rgba(255, 255, 255, 0.2)",
@@ -441,7 +482,7 @@ export default function Footer() {
 
       {/* Copyright Bottom */}
       <div style={{ padding: "20px 24px 32px", textAlign: "center" }}>
-        <p style={{ fontSize: 11, color: "var(--muted, #5a5a5a)", fontFamily: "'Outfit', sans-serif", letterSpacing: "0.02em" }}>
+        <p style={{ fontSize: "clamp(10px, 3vw, 11px)", color: "var(--muted, #5a5a5a)", fontFamily: "'Outfit', sans-serif", letterSpacing: "0.02em" }}>
           Copyright © {new Date().getFullYear()} All Rights Reserved
         </p>
       </div>

@@ -2,17 +2,17 @@
 
 const stats = [
   {
-    label: "Enterprise projects delivered across web, mobile, and cloud",
-    value: "1000+",
+    label: "Powered by a strong team of developers.",
+    value: "100+",
   },
   {
     label: "International clients trusting our engineering teams",
     value: "80+",
   },
-  {
-    label: "Client satisfaction across 8+ years of delivery",
-    value: "98%",
-  },
+{
+  label: "Years of technology expertise delivering global solutions",
+  value: "8+",
+},
 ];
 
 export default function StatsSection() {
