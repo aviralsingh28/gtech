@@ -12,7 +12,7 @@ const solutions = [
       "Automated sales & service workflows",
       "Advanced analytics & forecasting",
     ],
-    accent: "var(--text, #1a1a1a)",
+    accent: "var(--amber, #f5a623)",
   },
   {
     title: "Multi-Level Reporting Systems",
@@ -20,7 +20,7 @@ const solutions = [
       "Hierarchical dashboards for teams & departments",
       "Drill-down KPIs and exports",
     ],
-    accent: "var(--brand-blue, #769bbe)",
+    accent: "var(--amber, #f5a623)",
   },
 ];
 

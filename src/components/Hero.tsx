@@ -121,7 +121,7 @@ export default function Hero() {
 
             {/* CTA link */}
             <a
-              href="#about"
+              href="/contact"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
