@@ -2,12 +2,10 @@
 import Image from "next/image";
 
 const clients = [
-  "/images/Client/Client-one.svg",
-  "/images/Client/Client-two.svg",
-  "/images/Client/Client-three.svg",
-  "/images/Client/Client-four.svg",
-  "/images/Client/Client-five.svg",
-  "/images/Client/Client-six.svg",
+  "/review-company/cybersentinel.png",
+  "/review-company/pinnacle.png",
+  "/review-company/strategeit.png",
+  "/review-company/techmentor.png",
 ];
 
 const row1 = clients;
@@ -47,55 +45,55 @@ export default function Clients() {
         </div>
 
         {/* Marquee Rows */}
-        <style>{`
-          @keyframes clients-scroll-rtl {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-          }
-          @keyframes clients-scroll-ltr {
-            0% { transform: translateX(-50%); }
-            100% { transform: translateX(0); }
-          }
-          .clients-marquee {
-            position: relative;
-            overflow: hidden;
-            mask-image: linear-gradient(to right, transparent 0, #000 80px, #000 calc(100% - 80px), transparent 100%);
-            -webkit-mask-image: linear-gradient(to right, transparent 0, #000 80px, #000 calc(100% - 80px), transparent 100%);
-          }
-          .clients-track {
-            display: flex;
-            gap: 16px;
-            width: max-content;
-          }
-          .clients-track--rtl {
-            animation: clients-scroll-rtl 35s linear infinite;
-          }
-          .clients-track--ltr {
-            animation: clients-scroll-ltr 35s linear infinite;
-          }
-          .clients-marquee:hover .clients-track {
-            animation-play-state: paused;
-          }
-          .clients-logo {
-            flex: 0 0 auto;
-            width: clamp(160px, 42vw, 220px);
-            background: #fafafa;
-            border-radius: 16px;
-            height: clamp(96px, 22vw, 120px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 16px 20px;
-            border: 1px solid rgba(0,0,0,0.02);
-            transition: box-shadow 0.2s;
-          }
-          .clients-logo:hover {
-            box-shadow: 0 8px 30px rgba(0,0,0,0.04);
-          }
-        `}</style>
+<style>{`
+  @keyframes clients-scroll-rtl {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes clients-scroll-ltr {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+  .clients-marquee {
+    position: relative;
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent 0, #000 80px, #000 calc(100% - 80px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 80px, #000 calc(100% - 80px), transparent 100%);
+  }
+  .clients-track {
+    display: flex;
+    gap: 16px;
+    width: max-content;
+  }
+  .clients-track--rtl {
+    animation: clients-scroll-rtl 35s linear infinite;
+  }
+  .clients-track--ltr {
+    animation: clients-scroll-ltr 35s linear infinite;
+  }
+  .clients-marquee:hover .clients-track {
+    animation-play-state: paused;
+  }
+  .clients-logo {
+    flex: 0 0 auto;
+    width: clamp(160px, 42vw, 220px);
+    background: #FFFFFF; /* Changed from #fafafa to white */
+    border-radius: 16px;
+    height: clamp(96px, 22vw, 120px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 20px;
+    border: 1px solid rgba(0,0,0,0.02); /* Keep very subtle or remove */
+    transition: box-shadow 0.2s;
+  }
+  .clients-logo:hover {
+    box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+  }
+`}</style>
 
         {/* Row 1 — right to left */}
-        <div className="clients-marquee" style={{ marginBottom: 16 }}>
+        {/* <div className="clients-marquee" style={{ marginBottom: 16 }}>
           <div className="clients-track clients-track--rtl">
             {[...row1, ...row1].map((src, i) => (
               <div key={`r1-${i}`} className="clients-logo" aria-hidden={i >= row1.length}>
@@ -109,24 +107,24 @@ export default function Clients() {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* Row 2 — left to right */}
-        <div className="clients-marquee">
-          <div className="clients-track clients-track--ltr">
-            {[...row2, ...row2].map((src, i) => (
-              <div key={`r2-${i}`} className="clients-logo" aria-hidden={i >= row2.length}>
-                <Image
-                  src={src}
-                  alt={`Client ${(i % row2.length) + 1}`}
-                  width={180}
-                  height={60}
-                  style={{ width: "auto", height: "clamp(40px, 10vw, 52px)", objectFit: "contain" }}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
+<div className="clients-marquee">
+  <div className="clients-track clients-track--ltr">
+    {[...row2, ...row2].map((src, i) => (
+      <div key={`r2-${i}`} className="clients-logo" aria-hidden={i >= row2.length}>
+        <Image
+          src={src}
+          alt={`Client ${(i % row2.length) + 1}`}
+          width={180}
+          height={60}
+          style={{ width: "auto", height: "clamp(60px, 15vw, 100px)", objectFit: "contain" }}
+        />
+      </div>
+    ))}
+  </div>
+</div>
       </div>
     </section>
   );
