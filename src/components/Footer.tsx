@@ -436,7 +436,7 @@ export default function Footer() {
                         height: "auto",
                         borderRadius: "12px",
                         width: "100%",
-                        maxWidth: "clamp(120px, 30vw, 180px)"
+                         maxWidth: "clamp(90px, 25vw, 140px)"
                       }}
                     />
                   </div>
@@ -444,8 +444,8 @@ export default function Footer() {
                     <Image
                       src="/images/footer-images/image-9.png"
                       alt="Footer Logo 2"
-                      width={140}
-                      height={70}
+                      width={180}
+                      height={120}
                       className="footer-image-2"
                       style={{
                         objectFit: "contain",
@@ -461,7 +461,7 @@ export default function Footer() {
             </div>
 
             {/* Right Column Links */}
-            <div className="links-grid" style={{ flex: 1 }}>
+            <div className="links-grid" style={{ flex: 1.2 }}>
               {Object.entries(cols).map(([heading, links]) => (
                 <FooterAccordion
                   key={heading}
