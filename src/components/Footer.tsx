@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { servicesData } from "@/data/servicesData";
+import { useRouter } from "next/navigation";
 
 const cols = {
   Services: [
@@ -14,7 +15,7 @@ const cols = {
     "IoT Development",
     "UI/UX Design",
   ],
-  Company: ["About us", "Why us", "Team", "Careers"],
+  Company: ["Services", "About us", "Careers", "Industry"],
 };
 
 // Map links to their routes
@@ -30,10 +31,12 @@ const getLinkPath = (heading: string, link: string): string => {
   }
   
   const companyLinks: Record<string, string> = {
+    "services": "/services",
+    "Services": "/services", // Added this for consistency
     "About us": "/about",
-    "Why us": "/about",
-    "Team": "/about",
     "Careers": "/career",
+    "Industry": "/industries",
+    "industry": "/industries",
   };
   
   return companyLinks[link] || "#";
@@ -41,7 +44,7 @@ const getLinkPath = (heading: string, link: string): string => {
 
 const StarIcon = () => (
   <svg width="36" height="36" viewBox="0 0 24 24" fill="#f5a623" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0 }}>
-    <path d="M12 0C12 0 12 10.5 24 12C24 12 12.5 13.5 12 24C12 24 11.5 13.5 0 12C0 12 11.5 10.5 12 0Z" />
+    <path d="M12 0C12 0 12 10.5 24 12C12 12 12.5 13.5 12 24C12 24 11.5 13.5 0 12C0 12 11.5 10.5 12 0Z" />
   </svg>
 );
 
@@ -86,6 +89,21 @@ function FooterAccordion({
   const panelId = `footer-panel-${heading.toLowerCase().replace(/\s+/g, "-")}`;
   const triggerId = `footer-trigger-${panelId}`;
 
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
+    if (path === "#") {
+      e.preventDefault();
+      return;
+    }
+    
+    // Check if we're already on the target page
+    const currentPath = window.location.pathname;
+    if (currentPath === path) {
+      e.preventDefault();
+      // Scroll to top smoothly
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
     <div className={`footer-accordion${open ? " is-open" : ""}`}>
       <button
@@ -108,13 +126,20 @@ function FooterAccordion({
       >
         {links ? (
           <ul className="footer-accordion-links">
-            {links.map((link) => (
-              <li key={link}>
-                <Link href={getLinkPath(heading, link)} className="footer-link">
-                  {link}
-                </Link>
-              </li>
-            ))}
+            {links.map((link) => {
+              const path = getLinkPath(heading, link);
+              return (
+                <li key={link}>
+                  <Link 
+                    href={path} 
+                    className="footer-link"
+                    onClick={(e) => handleLinkClick(e, path)}
+                  >
+                    {link}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         ) : (
           <div className="footer-accordion-content">{children}</div>
@@ -137,6 +162,11 @@ export default function Footer() {
       [heading]: !prev[heading],
     }));
   };
+
+  const handleScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <footer style={{ background: "#000000", position: "relative", overflow: "hidden" }}>
 
@@ -149,183 +179,209 @@ export default function Footer() {
             padding: "clamp(40px, 6vw, 64px) 0",
           }}
         >
-          <style>{`
-            .footer-container {
-              padding: 0 clamp(20px, 5vw, 64px);
-              display: flex;
-              flex-direction: column;
-              gap: 36px;
-            }
-            @media (min-width: 1024px) {
-              .footer-container {
-                flex-direction: row;
-                justify-content: space-between;
-                gap: 48px;
-              }
-            }
-            .links-grid {
-              display: grid;
-              grid-template-columns: 1fr;
-              gap: 32px;
-            }
-            @media (min-width: 540px) {
-              .links-grid {
-                grid-template-columns: repeat(2, 1fr);
-              }
-            }
-            @media (min-width: 1024px) {
-              .links-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 40px;
-              }
-            }
-            .footer-link {
-              font-size: 14px;
-              color: var(--muted, #5a5a5a);
-              text-decoration: none;
-              font-family: 'Outfit', sans-serif;
-              transition: color 0.2s;
-              display: inline-block;
-            }
-            .footer-link:hover { color: #fff; }
-            .footer-accordion {
-              border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            }
-            .footer-accordion-trigger {
-              display: flex;
-              align-items: center;
-              justify-content: space-between;
-              width: 100%;
-              padding: 12px 0;
-              background: none;
-              border: none;
-              cursor: pointer;
-              color: #fff;
-              font-size: 16px;
-              font-weight: 600;
-              font-family: 'Outfit', sans-serif;
-              text-align: left;
-            }
-            .footer-accordion-icon {
-              color: #f5a623;
-              flex-shrink: 0;
-            }
-            .footer-accordion-icon-vertical {
-              transform-origin: center;
-              transition: transform 0.25s ease, opacity 0.25s ease;
-            }
-            .footer-accordion-icon.is-open .footer-accordion-icon-vertical {
-              transform: rotate(90deg);
-              opacity: 0;
-            }
-            .footer-accordion-panel {
-              overflow: hidden;
-              max-height: 0;
-              transition: max-height 0.35s ease;
-            }
-            .footer-accordion.is-open .footer-accordion-panel {
-              max-height: 400px;
-            }
-            .footer-accordion-links {
-              list-style: none;
-              padding: 0 0 12px;
-              margin: 0;
-              display: flex;
-              flex-direction: column;
-              gap: 10px;
-            }
-            .footer-accordion-content {
-              padding: 0 0 12px;
-              font-size: 14px;
-              color: var(--muted, #5a5a5a);
-              font-family: 'Outfit', sans-serif;
-              line-height: 1.6;
-            }
-            @media (min-width: 1024px) {
-              .footer-accordion {
-                border-bottom: none;
-              }
-              .footer-accordion-trigger {
-                display: none;
-              }
-              .footer-accordion-panel {
-                max-height: none !important;
-                overflow: visible;
-              }
-              .footer-accordion.is-open .footer-accordion-panel,
-              .footer-accordion .footer-accordion-panel {
-                max-height: none !important;
-              }
-              .footer-accordion-heading {
-                display: block;
-              }
-              .footer-accordion-links,
-              .footer-accordion-content {
-                padding-bottom: 0;
-              }
-            }
-            @media (max-width: 1023px) {
-              .footer-accordion-heading {
-                display: none;
-              }
-              .links-grid {
-                gap: 0;
-              }
-            }
-            .footer-accordion-heading {
-              font-size: 16px;
-              font-weight: 600;
-              color: #fff;
-              font-family: 'Outfit', sans-serif;
-              margin-bottom: 16px;
-            }
-            @keyframes marquee {
-              0% { transform: translateX(0); }
-              100% { transform: translateX(-50%); }
-            }
-            
-            /* Responsive image styles */
-            .footer-images-container {
-              display: flex;
-              gap: 18px;
-              margin-top: 16px;
-              align-items: center;
-              flex-wrap: wrap;
-            }
-            .footer-image-wrapper {
-              position: relative;
-              flex-shrink: 0;
-            }
-            .footer-image-1 {
-              width: clamp(120px, 30vw, 180px);
-              height: auto;
-            }
-            .footer-image-2 {
-              width: clamp(90px, 25vw, 140px);
-              height: auto;
-            }
-            @media (max-width: 480px) {
-              .footer-images-container {
-                gap: 12px;
-              }
-            }
-          `}</style>
+<style>{`
+  .footer-container {
+    padding: 0 clamp(20px, 5vw, 64px);
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+  @media (min-width: 1024px) {
+    .footer-container {
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 48px;
+    }
+  }
+  .links-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  @media (min-width: 540px) {
+    .links-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+@media (min-width: 1024px) {
+  .links-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 64px;
+    row-gap: 0;
+    align-items: start;
+  }
+
+  .footer-accordion {
+    width: 100%;
+  }
+}
+  .footer-link {
+    font-size: 14px;
+    color: var(--muted, #5a5a5a);
+    text-decoration: none;
+    font-family: 'Outfit', sans-serif;
+    transition: color 0.2s;
+    display: inline-block;
+    cursor: pointer;
+  }
+  .footer-link:hover { color: #fff; }
+  .footer-accordion {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .footer-accordion-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 12px 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Outfit', sans-serif;
+    text-align: left;
+  }
+  .footer-accordion-icon {
+    color: #f5a623;
+    flex-shrink: 0;
+  }
+  .footer-accordion-icon-vertical {
+    transform-origin: center;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+  .footer-accordion-icon.is-open .footer-accordion-icon-vertical {
+    transform: rotate(90deg);
+    opacity: 0;
+  }
+  .footer-accordion-panel {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.35s ease;
+  }
+  .footer-accordion.is-open .footer-accordion-panel {
+    max-height: 400px;
+  }
+  .footer-accordion-links {
+    list-style: none;
+    padding: 0 0 12px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .footer-accordion-content {
+    padding: 0 0 12px;
+    font-size: 14px;
+    color: var(--muted, #5a5a5a);
+    font-family: 'Outfit', sans-serif;
+    line-height: 1.6;
+  }
+  
+  /* Add consistent height for all accordion content on desktop */
+  @media (min-width: 1024px) {
+    .footer-accordion {
+      border-bottom: none;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .footer-accordion-trigger {
+      display: none;
+    }
+    .footer-accordion-panel {
+      max-height: none !important;
+      overflow: visible;
+      flex: 1;
+    }
+    .footer-accordion.is-open .footer-accordion-panel,
+    .footer-accordion .footer-accordion-panel {
+      max-height: none !important;
+    }
+    .footer-accordion-heading {
+      display: block;
+    }
+    .footer-accordion-links,
+    .footer-accordion-content {
+      padding-bottom: 0;
+    }
+    
+    /* Make all accordion content take equal height */
+    .footer-accordion-links {
+      min-height: 200px;
+    }
+    .footer-accordion-content {
+      min-height: 200px;
+    }
+  }
+  
+  @media (max-width: 1023px) {
+    .footer-accordion-heading {
+      display: none;
+    }
+    .links-grid {
+      gap: 0;
+    }
+  }
+  .footer-accordion-heading {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+    margin-bottom: 16px;
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  
+  /* Responsive image styles */
+  .footer-images-container {
+    display: flex;
+    gap: 18px;
+    margin-top: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .footer-image-wrapper {
+    position: relative;
+    flex-shrink: 0;
+  }
+  .footer-image-1 {
+    width: clamp(120px, 30vw, 180px);
+    height: auto;
+  }
+  .footer-image-2 {
+    width: clamp(90px, 25vw, 140px);
+    height: auto;
+  }
+  @media (max-width: 480px) {
+    .footer-images-container {
+      gap: 12px;
+    }
+  }
+`}</style>
 
           <div className="footer-container">
             {/* Left Column */}
             <div style={{ flex: 1, maxWidth: 500 }}>
-              <Image
-                src="/images/Brand/brand-white.svg"
-                alt="GTechSoft"
-                width={180}
-                height={45}
-                style={{ 
-                  objectFit: "contain", 
-                  marginBottom: 12,
-                  width: "clamp(140px, 35vw, 180px)",
-                  height: "auto"
-                }}
-              />
+              <Link href="/" onClick={handleScrollToTop}>
+                <Image
+                  src="/images/Brand/brand-white.svg"
+                  alt="GTechSoft"
+                  width={180}
+                  height={45}
+                  style={{ 
+                    objectFit: "contain", 
+                    marginBottom: 12,
+                    width: "clamp(140px, 35vw, 180px)",
+                    height: "auto",
+                    cursor: "pointer"
+                  }}
+                />
+              </Link>
 
               <p
                 style={{
@@ -405,7 +461,7 @@ export default function Footer() {
             </div>
 
             {/* Right Column Links */}
-            <div className="links-grid" style={{ flex: 1.2 }}>
+            <div className="links-grid" style={{ flex: 1 }}>
               {Object.entries(cols).map(([heading, links]) => (
                 <FooterAccordion
                   key={heading}

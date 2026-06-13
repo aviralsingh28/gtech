@@ -9,82 +9,117 @@ export default function IndustriesHero() {
       <div
         className="page-hero-card"
         style={{
-          background: "linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%)",
+          background:
+            "linear-gradient(135deg, var(--surface, #fbfaf9) 0%, rgba(245, 166, 35, 0.35) 100%)",
+          display: "flex",
+          alignItems: "center",
+          minHeight: "inherit",
         }}
       >
-        <div
+        <div 
+          className="page-hero-inner"
           style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.85) 100%)",
-            pointerEvents: "none",
+            display: "flex",
+            gap: "clamp(2rem, 5vw, 6rem)",
+            alignItems: "center",
+            justifyContent: "space-between",
+            flexWrap: "wrap",
+            maxWidth: 1400,
+            width: "100%",
+            margin: "0 auto",
+            padding: "3rem 2rem",
           }}
-          aria-hidden
-        />
-        <div className="page-hero-inner">
-          <div style={{ gridColumn: "1 / -1", maxWidth: 720 }}>
+        >
+          <div style={{ flex: 1, minWidth: 320 }}>
             <p
               style={{
-                fontSize: 12,
+                fontSize: 14,
                 letterSpacing: "0.18em",
                 color: "var(--amber, #f5a623)",
                 textTransform: "uppercase",
                 fontWeight: 700,
                 fontFamily: "'Outfit', sans-serif",
-                marginBottom: 24,
+                marginBottom: 28,
               }}
             >
               Industry-Focused Digital Solutions
             </p>
             <h1
               style={{
-                fontSize: "clamp(2.6rem, 5vw, 4.2rem)",
+                fontSize: "clamp(3.5rem, 6vw, 5rem)",
                 fontWeight: 400,
-                color: "#fff",
+                color: "#111",
                 lineHeight: 1.1,
                 fontFamily: "'Outfit', sans-serif",
                 letterSpacing: "-0.02em",
-                marginBottom: 20,
+                marginBottom: 24,
               }}
             >
               Accelerating digital transformation across industries
             </h1>
             <p
               style={{
-                fontSize: "clamp(1rem, 1.4vw, 1.15rem)",
-                color: "rgba(255,255,255,0.72)",
+                fontSize: "clamp(1.1rem, 1.6vw, 1.3rem)",
+                color: "var(--muted, #5a5a5a)",
                 lineHeight: 1.7,
                 fontFamily: "'Outfit', sans-serif",
-                maxWidth: 640,
-                marginBottom: 24,
+                maxWidth: 560,
               }}
             >
               We deliver innovative digital solutions that help businesses
               streamline operations, enhance customer experiences, and
               accelerate growth.
             </p>
-            <a
-              href="#solutions"
-              style={{
-                display: "inline-flex",
-                gap: 10,
-                alignItems: "center",
-                background: "var(--amber, #f5a623)",
-                color: "#1a1a1a",
-                padding: "12px 28px",
-                borderRadius: 100,
-                textDecoration: "none",
-                fontWeight: 600,
-                fontSize: 14,
-                fontFamily: "'Outfit', sans-serif",
-                border: "2px solid var(--amber, #f5a623)",
-                transition: "all 0.3s ease",
-              }}
-            >
-              Explore Solutions
-              <span aria-hidden>→</span>
-            </a>
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 20,
+              maxWidth: 480,
+              flex: 1,
+              minWidth: 320,
+            }}
+          >
+            {[
+              { value: "200+", label: "Enterprise Solutions" },
+              { value: "95%", label: "Client Satisfaction" },
+            ].map((stat) => (
+              <div
+                key={stat.label}
+                style={{
+                  background: "#fff",
+                  borderRadius: 24,
+                  padding: "clamp(28px, 5vw, 38px)",
+                  textAlign: "center",
+                  border: "1px solid rgba(0,0,0,0.06)",
+                }}
+              >
+                <p
+                  style={{
+                    fontSize: "clamp(2.5rem, 5vw, 3.5rem)",
+                    fontWeight: 700,
+                    color: "var(--amber, #f5a623)",
+                    marginBottom: 12,
+                    fontFamily: "'Outfit', sans-serif",
+                    lineHeight: 1,
+                  }}
+                >
+                  {stat.value}
+                </p>
+                <p
+                  style={{
+                    fontSize: 15,
+                    color: "var(--muted, #5a5a5a)",
+                    fontWeight: 500,
+                    fontFamily: "'Outfit', sans-serif",
+                  }}
+                >
+                  {stat.label}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </div>

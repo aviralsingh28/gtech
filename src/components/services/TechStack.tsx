@@ -55,6 +55,24 @@ const stacks = [
       "Monitoring & observability tooling",
     ],
   },
+    {
+    title: "Testing",
+    items: [
+      "Jest — Unit & integration testing framework",
+      "Cypress — E2E & component testing",
+      "Playwright — Cross-browser automation",
+      "Sentry — Error monitoring & debugging",
+    ],
+  },
+  {
+    title: "AI & Machine Learning",
+    items: [
+      "OpenAI GPT — LLM integration & generation",
+      "LangChain — AI agent orchestration",
+      "TensorFlow — Deep learning models",
+      "Hugging Face — NLP & model hub",
+    ],
+  },
 ];
 
 export default function TechStack() {

@@ -164,7 +164,7 @@ export default function Navbar() {
             />
             <div className="nav-tagline-divider" style={{ height: 24, borderLeft: "1px solid #ddd" }} />
             <span className="nav-tagline" style={{ fontSize: 14, color: "#444", fontWeight: 500, fontFamily: "'Outfit', sans-serif" }}>
-              Built for the World
+              Driven by Vision, Defined by Results.
             </span>
           </Link>
 
