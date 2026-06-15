@@ -65,11 +65,11 @@ export default function Hero() {
                 letterSpacing: "-0.02em",
               }}
             >
-              Building Scalable
+              Building Systems
               <br />
-              Digital Systems for
+              That Grow With 
               <br />
-              Modern Businesses.
+              Your Business.
             </h1>
           </div>
 

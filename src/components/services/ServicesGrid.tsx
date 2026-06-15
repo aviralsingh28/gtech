@@ -92,7 +92,7 @@ export default function ServicesGrid() {
                       marginBottom: 32,
                     }}
                   >
-                    / {service.num}
+                    {service.num}
                   </p>
                   <h3
                     className="svc-title"
