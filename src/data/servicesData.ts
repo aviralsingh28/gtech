@@ -30,7 +30,7 @@ export const servicesData: ServiceDetail[] = [
     title: "Software Development",
     shortDescription:
       "Custom software solutions tailored to your business needs with cutting-edge technologies and best practices.",
-    longDescription: `At GTechSoft, we specialize in creating custom software solutions that align perfectly with your business objectives. Our experienced development team leverages cutting-edge technologies and industry best practices to deliver **robust, scalable, and maintainable** software systems.
+    longDescription: `At GTech Soft, we specialize in creating custom software solutions that align perfectly with your business objectives. Our experienced development team leverages cutting-edge technologies and industry best practices to deliver **robust, scalable, and maintainable** software systems.
 
 Whether you're looking to build a greenfield application or modernize existing systems, we have the expertise to guide you through **every step** of the development lifecycle. From requirements analysis and architecture design to implementation and deployment, we ensure quality at every stage.
 
@@ -87,7 +87,7 @@ Our Software Development services encompass full-stack development, microservice
     title: "ERP Solutions",
     shortDescription:
       "Enterprise Resource Planning systems that streamline your business operations and improve efficiency.",
-    longDescription: `Enterprise Resource Planning (ERP) systems are the backbone of modern business operations. At GTechSoft, we implement and customize leading ERP platforms to integrate your **finance, supply chain, manufacturing**, human resources, and customer relationship management processes.
+    longDescription: `Enterprise Resource Planning (ERP) systems are the backbone of modern business operations. At GTech Soft, we implement and customize leading ERP platforms to integrate your **finance, supply chain, manufacturing**, human resources, and customer relationship management processes.
 
 Our ERP solutions help you gain **real-time visibility** into your business operations, eliminate data silos, and make informed decisions faster. We work with industry-leading platforms and have the expertise to customize them to your specific business requirements.
 
@@ -139,7 +139,7 @@ From implementation planning and data migration to user training and ongoing sup
     title: "Cyber Security",
     shortDescription:
       "Comprehensive security solutions to protect your digital assets and ensure compliance with regulations.",
-    longDescription: `In today's threat landscape, cybersecurity is not a luxury—it's a necessity. GTechSoft provides comprehensive cybersecurity solutions to protect your **digital assets, data, and infrastructure** from evolving threats.
+    longDescription: `In today's threat landscape, cybersecurity is not a luxury—it's a necessity. GTech Soft provides comprehensive cybersecurity solutions to protect your **digital assets, data, and infrastructure** from evolving threats.
 
 Our security experts conduct thorough assessments, design robust security architectures, and implement **industry-standard protective measures**. We help you build a security-aware culture while maintaining compliance with regulatory requirements.
 
@@ -193,7 +193,7 @@ From vulnerability management and threat detection to incident response and fore
     title: "Mobile & Web Applications",
     shortDescription:
       "Native and cross-platform apps plus responsive websites that engage your audience and drive conversions.",
-    longDescription: `In a mobile-first world, having a strong digital presence is crucial. GTechSoft creates native iOS and Android applications, cross-platform mobile apps, and responsive web applications that **engage users and drive business results**.
+    longDescription: `In a mobile-first world, having a strong digital presence is crucial. GTech Soft creates native iOS and Android applications, cross-platform mobile apps, and responsive web applications that **engage users and drive business results**.
 
 Our design and development teams work collaboratively to create intuitive, visually stunning applications that solve real user problems. We focus on **user experience, performance, and accessibility** to ensure your application succeeds in the competitive app marketplace.
 
@@ -248,7 +248,7 @@ Whether you need a consumer-facing mobile app, a B2B web platform, or a progress
     title: "Cloud Solutions",
     shortDescription:
       "Scalable cloud infrastructure and migration services across AWS, GCP and DigitalOcean.",
-    longDescription: `Cloud computing has revolutionized how businesses operate, providing **flexibility, scalability, and cost efficiency**. GTechSoft helps you harness the power of cloud technology through infrastructure design, migration, and optimization.
+    longDescription: `Cloud computing has revolutionized how businesses operate, providing **flexibility, scalability, and cost efficiency**. GTech Soft helps you harness the power of cloud technology through infrastructure design, migration, and optimization.
 
 Whether you're moving from on-premises systems or looking to optimize your existing cloud environment, our cloud architects and engineers guide you through every step. We work with leading cloud providers to design solutions that **scale with your business while optimizing costs**.
 
@@ -300,7 +300,7 @@ Our services include cloud architecture design, infrastructure as code, containe
     title: "IoT Development",
     shortDescription:
       "Connected systems that turn real-time data into intelligent, automated actions.",
-    longDescription: `The Internet of Things is transforming industries by connecting devices, **collecting real-time data, and enabling intelligent automation**. GTechSoft develops IoT solutions that turn raw data into actionable insights and automated processes.
+    longDescription: `The Internet of Things is transforming industries by connecting devices, **collecting real-time data, and enabling intelligent automation**. GTech Soft develops IoT solutions that turn raw data into actionable insights and automated processes.
 
 From device firmware development and edge computing to cloud integration and real-time analytics, we build end-to-end IoT systems. Our expertise spans various industries including **manufacturing, healthcare, agriculture, and smart city** applications.
 
@@ -352,7 +352,7 @@ We help you harness sensor data, implement machine learning models, and create i
     title: "UI/UX Design",
     shortDescription:
       "User-centered design that combines aesthetics with functionality to create memorable digital experiences.",
-    longDescription: `Great design is the intersection of form and function. GTechSoft's UI/UX design team creates user-centered digital experiences that are **not just beautiful, but also intuitive and functional**.
+    longDescription: `Great design is the intersection of form and function. GTech Soft's UI/UX design team creates user-centered digital experiences that are **not just beautiful, but also intuitive and functional**.
 
 We start with deep user research and testing to understand your audience's needs, pain points, and behaviors. Then we craft designs that solve real problems while maintaining **visual excellence and brand consistency**.
 

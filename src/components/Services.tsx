@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const services = [
   {
-    num: "/ 01",
+    num: "01",
     title: "Custom Software Development",
     description: "Scalable backend systems and APIs engineered for enterprise workloads.",
     features: [
@@ -14,7 +14,7 @@ const services = [
     image: "/images/Services/Branding-Identity.svg",
   },
   {
-    num: "/ 02",
+    num: "02",
     title: "Web & Mobile Applications",
     description: "High-performance web and cross-platform mobile experiences your users love.",
     features: [
@@ -25,7 +25,7 @@ const services = [
     image: "/images/Services/UIUX-Design.svg",
   },
   {
-    num: "/ 03",
+    num: "03",
     title: "Cloud & DevOps",
     description: "Cloud deployments and CI/CD pipelines built for zero-downtime delivery.",
     features: [
@@ -36,7 +36,7 @@ const services = [
     image: "/images/Services/Website-Development.svg",
   },
   {
-    num: "/ 04",
+    num: "04",
     title: "Cybersecurity",
     description: "Application security, data protection, and compliance from day one.",
     features: [
@@ -47,7 +47,7 @@ const services = [
     image: "/images/Services/Build-Product-MVP.svg",
   },
   {
-    num: "/ 05",
+    num: "05",
     title: "ERP & CRM Systems",
     description: "Multi-tenant SaaS platforms with workflow automation and granular access control.",
     features: [
