@@ -11,7 +11,7 @@ const services = [
       "API-FIRST DESIGN (REST / GRAPHQL)",
       "ENTERPRISE-GRADE SECURITY",
     ],
-    image: "/images/Services/Branding-Identity.svg",
+    image: "/images/Services/Screenshot 2026-06-19 at 5.10.22 PM.png",
   },
   {
     num: "02",
@@ -22,7 +22,7 @@ const services = [
       "REACT NATIVE / FLUTTER",
       "PERFORMANCE-OPTIMIZED UI",
     ],
-    image: "/images/Services/UIUX-Design.svg",
+    image: "/images/Services/466c76b9-09bc-45cc-84e9-dbcdba0074fa.png",
   },
   {
     num: "03",
@@ -33,7 +33,7 @@ const services = [
       "DOCKER + KUBERNETES ORCHESTRATION",
       "CI/CD PIPELINES",
     ],
-    image: "/images/Services/Website-Development.svg",
+    image: "/images/Services/devops.jpg",
   },
   {
     num: "04",
@@ -44,7 +44,7 @@ const services = [
       "DATA PROTECTION & COMPLIANCE",
       "SECURE AUTHENTICATION SYSTEMS",
     ],
-    image: "/images/Services/Build-Product-MVP.svg",
+    image: "/images/Services/5e7bf013-2e81-42f5-b2b3-7fe8a66f34f1.png",
   },
   {
     num: "05",
