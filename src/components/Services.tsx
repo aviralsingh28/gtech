@@ -44,7 +44,7 @@ const services = [
       "DATA PROTECTION & COMPLIANCE",
       "SECURE AUTHENTICATION SYSTEMS",
     ],
-    image: "/images/Services/5e7bf013-2e81-42f5-b2b3-7fe8a66f34f1.png",
+    image: "/images/Services/WhatsApp Image 2026-06-19 at 17.36.48.jpeg",
   },
   {
     num: "05",
