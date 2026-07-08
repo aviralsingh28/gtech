@@ -64,7 +64,7 @@ const submit = async (e: React.FormEvent) => {
     borderRadius: 8,
     padding: "18px 24px",
     fontSize: 15,
-    color: "#333",
+    color: "#777",
     outline: "none",
     fontFamily: "'Outfit', sans-serif",
   };
@@ -159,7 +159,7 @@ const submit = async (e: React.FormEvent) => {
             <p
               style={{
                 fontSize: 16,
-                color: "var(--muted, #5a5a5a)",
+                color: "#777",
                 lineHeight: 1.6,
                 fontFamily: "'Outfit', sans-serif",
                 marginBottom: 32,
@@ -229,7 +229,7 @@ const submit = async (e: React.FormEvent) => {
             <p
               style={{
                 fontSize: 16,
-                color: "var(--muted, #5a5a5a)",
+                color: "#777",
                 fontFamily: "'Outfit', sans-serif",
                 marginBottom: 40,
               }}

@@ -131,7 +131,7 @@ export default function Solutions() {
           }
           .solutions-subtitle {
             font-size: 16px;
-            color: var(--muted, #5a5a5a);
+            color: "#777",
             font-family: 'Outfit', sans-serif;
             line-height: 1.7;
           }
@@ -174,7 +174,7 @@ export default function Solutions() {
           }
           .solution-description {
             font-size: 15px;
-            color: var(--muted, #5a5a5a);
+            color: "#777",
             font-family: 'Outfit', sans-serif;
             line-height: 1.7;
             margin-bottom: 20px;

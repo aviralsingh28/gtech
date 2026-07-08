@@ -160,7 +160,7 @@ export default function JobOpenings() {
             align-items: center;
             gap: 6px;
             font-size: 13px;
-            color: var(--muted, #5a5a5a);
+            color: "#777";
             font-family: 'Outfit', sans-serif;
             background: var(--surface, #fbfaf9);
             border: 1px solid var(--border, #e8e8e8);
@@ -176,7 +176,7 @@ export default function JobOpenings() {
           }
           .job-desc {
             font-size: 14px;
-            color: var(--muted, #5a5a5a);
+            color: "#777";
             line-height: 1.65;
             font-family: 'Outfit', sans-serif;
             flex: 1;
@@ -245,7 +245,7 @@ export default function JobOpenings() {
             <p
               style={{
                 fontSize: "clamp(0.95rem, 1.4vw, 1.05rem)",
-                color: "var(--muted, #5a5a5a)",
+               color: "#777",
                 lineHeight: 1.7,
                 fontFamily: "'Outfit', sans-serif",
               }}

@@ -75,7 +75,7 @@ export default function ServicesHero() {
             <p
               style={{
                 fontSize: "clamp(1.1rem, 1.6vw, 1.3rem)", // Increased from 1rem/1.15rem
-                color: "var(--muted, #5a5a5a)",
+                 color: "#777",
                 lineHeight: 1.7,
                 fontFamily: "'Outfit', sans-serif",
               }}

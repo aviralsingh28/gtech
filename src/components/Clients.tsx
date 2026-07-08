@@ -38,7 +38,7 @@ export default function Clients() {
             <br />
             clients across industries
           </h2>
-          <p style={{ fontSize: 16, color: "var(--muted, #5a5a5a)", maxWidth: 700, margin: "0 auto", lineHeight: 1.6, fontFamily: "'Outfit', sans-serif" }}>
+          <p style={{ fontSize: 16, color: "#777", maxWidth: 700, margin: "0 auto", lineHeight: 1.6, fontFamily: "'Outfit', sans-serif" }}>
             From fintech and healthcare to logistics and education — global teams rely on us
             to ship enterprise-grade software that scales.
           </p>

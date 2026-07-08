@@ -60,7 +60,7 @@ export default function CareerHero() {
             <p
               style={{
                 fontSize: "clamp(1.1rem, 1.6vw, 1.3rem)",
-                color: "var(--muted, #5a5a5a)",
+                color: "#777",
                 lineHeight: 1.7,
                 fontFamily: "'Outfit', sans-serif",
                 maxWidth: 560,
@@ -111,7 +111,7 @@ export default function CareerHero() {
                 <p
                   style={{
                     fontSize: 15,
-                    color: "var(--muted, #5a5a5a)",
+                    color: "#777",
                     fontWeight: 500,
                     fontFamily: "'Outfit', sans-serif",
                   }}

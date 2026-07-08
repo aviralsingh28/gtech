@@ -138,7 +138,7 @@ export default function About() {
             }
             .client-review-text {
               font-size: 15px;
-              color: var(--muted, #5a5a5a);
+              color: #777;
               font-family: 'Outfit', sans-serif;
               line-height: 1.75;
               flex: 1;
@@ -172,7 +172,7 @@ export default function About() {
             }
             .client-review-label {
               font-size: 12px;
-              color: var(--muted, #5a5a5a);
+              color: #777;
               font-family: 'Outfit', sans-serif;
               margin-top: 2px;
             }

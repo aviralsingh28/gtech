@@ -94,7 +94,7 @@ export default function CareersApply() {
           }
           .apply-email {
             font-size: 13px;
-            color: var(--muted, #5a5a5a);
+            color: "#777";
             font-family: 'Outfit', sans-serif;
             text-decoration: none;
             transition: color 0.2s ease;
@@ -142,7 +142,7 @@ export default function CareersApply() {
           }
           .apply-stat-label {
             font-size: 12px;
-            color: var(--muted, #5a5a5a);
+            color: "#777";
             font-family: 'Outfit', sans-serif;
             line-height: 1.4;
           }
@@ -190,7 +190,7 @@ export default function CareersApply() {
             <p
               style={{
                 fontSize: 14,
-                color: "var(--muted, #5a5a5a)",
+                color: "#777",
                 lineHeight: 1.65,
                 fontFamily: "'Outfit', sans-serif",
                 maxWidth: 480,

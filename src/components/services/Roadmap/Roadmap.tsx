@@ -207,7 +207,7 @@ const Roadmap = () => {
           .roadmap-card-desc {
             text-align: center;
             font-size: 15px;
-            color: var(--muted, #5a5a5a);
+            color: "#777",
             line-height: 1.65;
             font-family: ${font};
             margin-bottom: 24px;

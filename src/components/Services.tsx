@@ -137,7 +137,7 @@ export default function Services() {
               style={{
                 fontSize: 12,
                 letterSpacing: "0.12em",
-                color: "var(--muted, #5a5a5a)",
+                color: "#777",
                 textTransform: "uppercase",
                 fontWeight: 600,
                 fontFamily: "'Outfit', sans-serif",
@@ -161,7 +161,7 @@ export default function Services() {
               <br />
               Scale Your Business
             </h2>
-            <p style={{ fontSize: 16, color: "var(--muted, #5a5a5a)", lineHeight: 1.6, maxWidth: 300, fontFamily: "'Outfit', sans-serif" }}>
+            <p style={{ fontSize: 16, color: "#777", lineHeight: 1.6, maxWidth: 300, fontFamily: "'Outfit', sans-serif" }}>
               From custom software to cloud infrastructure and AI — we build the systems
               that power CRM, banking, analytics, and everything in between.
             </p>
@@ -198,9 +198,17 @@ export default function Services() {
                   >
                     {service.title}
                   </h3>
-                  <p style={{ fontSize: 15, color: "var(--muted, #5a5a5a)", marginBottom: "clamp(24px, 5vw, 48px)", lineHeight: 1.6, fontFamily: "'Outfit', sans-serif" }}>
-                    {service.description}
-                  </p>
+                  <p
+  style={{
+    fontSize: 15,
+    color: "#777",
+    marginBottom: "clamp(24px, 5vw, 48px)",
+    lineHeight: 1.6,
+    fontFamily: "'Outfit', sans-serif",
+  }}
+>
+  {service.description}
+</p>
 
                   {/* Features List */}
                   <div style={{ marginTop: "auto" }}>
