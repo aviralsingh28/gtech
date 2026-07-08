@@ -4,25 +4,54 @@ import { ArrowUpRight, CheckCircle, X } from "lucide-react";
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", phone: "", company: "", email: "", message: "" });
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
+const [showSuccessModal, setShowSuccessModal] = useState(false);
+const [loading, setLoading] = useState(false);
 
   const on = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  const submit = (e: React.FormEvent) => { 
-    e.preventDefault(); 
-    
+const submit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  try {
+    setLoading(true);
+
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(form),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || "Failed to submit form");
+    }
+
     // Clear form
-    setForm({ name: "", phone: "", company: "", email: "", message: "" });
-    
-    // Show success modal
+    setForm({
+      name: "",
+      phone: "",
+      company: "",
+      email: "",
+      message: "",
+    });
+
+    // Show Success Modal
     setShowSuccessModal(true);
-    
-    // Auto-hide modal after 3 seconds
+
     setTimeout(() => {
       setShowSuccessModal(false);
     }, 3000);
-  };
+  } catch (error) {
+    console.error(error);
+    alert("Something went wrong. Please try again.");
+  } finally {
+    setLoading(false);
+  }
+};
 
   const handleScheduleCall = () => {
     window.location.href = "tel:+971524855744";
@@ -256,22 +285,23 @@ export default function Contact() {
               />
 
               <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                <button
-                  type="submit"
-                  style={{
-                    background: "#2a2a2a",
-                    color: "#fff",
-                    border: "none",
-                    borderRadius: 100,
-                    padding: "16px 36px",
-                    fontSize: 15,
-                    fontWeight: 600,
-                    cursor: "pointer",
-                    fontFamily: "'Outfit', sans-serif",
-                  }}
-                >
-                  Send Message
-                </button>
+<button
+  type="submit"
+  disabled={loading}
+  style={{
+    background: loading ? "#777" : "#2a2a2a",
+    color: "#fff",
+    border: "none",
+    borderRadius: 100,
+    padding: "16px 36px",
+    fontSize: 15,
+    fontWeight: 600,
+    cursor: loading ? "not-allowed" : "pointer",
+    fontFamily: "'Outfit', sans-serif",
+  }}
+>
+  {loading ? "Sending..." : "Send Message"}
+</button>
 
                 <div
                   style={{
@@ -284,7 +314,7 @@ export default function Contact() {
                     justifyContent: "center",
                     cursor: "pointer",
                   }}
-                  onClick={submit}
+                  onClick={() => document.querySelector("form")?.requestSubmit()}
                 >
                   <svg width="20" height="20" viewBox="0 0 14 14" fill="none">
                     <path d="M2 12L12 2M12 2H5M12 2V9" stroke="#1a1a1a" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />

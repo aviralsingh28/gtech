@@ -10,6 +10,10 @@ import {
   SITE_NAME,
   SITE_SHORT_NAME,
 } from "@/lib/seo";
+import { Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
@@ -72,7 +76,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={cn("font-sans", geist.variable)}>
       <body className="antialiased">
         <OrganizationJsonLd />
         <WebSiteJsonLd />

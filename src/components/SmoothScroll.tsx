@@ -1,10 +1,16 @@
 "use client";
+
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 
 export default function SmoothScroll() {
+  const pathname = usePathname();
+  const isAdminRoute = pathname?.startsWith("/admin") || pathname?.startsWith("/login");
+
   useEffect(() => {
-    // Initialize Lenis with optimized settings for performance and smoothness
+    if (isAdminRoute) return;
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -14,17 +20,16 @@ export default function SmoothScroll() {
       wheelMultiplier: 1,
       touchMultiplier: 2,
       infinite: false,
-      autoRaf: true, // Let Lenis handle the animation frame internally
+      autoRaf: true,
     });
 
-    // Add lenis to window for potential access in other components
-    (window as any).lenis = lenis;
+    (window as unknown as { lenis?: Lenis }).lenis = lenis;
 
     return () => {
       lenis.destroy();
-      (window as any).lenis = null;
+      delete (window as unknown as { lenis?: Lenis }).lenis;
     };
-  }, []);
+  }, [isAdminRoute]);
 
   return null;
 }
