@@ -108,7 +108,7 @@ export default function GlobalImpact() {
           <div className="impact-grid">
             <div className="impact-image">
               <Image
-                src="/trusted-industry/ChatGPT Image May 30, 2026, 03_50_42 PM.png"
+                src="/trusted-industry/aws.webp"
                 alt="Trusted Industry 1"
                 width={300}
                 height={200}
@@ -117,7 +117,7 @@ export default function GlobalImpact() {
             </div>
             <div className="impact-image">
               <Image
-                src="/trusted-industry/ChatGPT Image May 30, 2026, 03_50_47 PM.png 15-56-44-924.png"
+                src="/trusted-industry/google.webp"
                 alt="Trusted Industry 2"
                 width={300}
                 height={200}
@@ -126,7 +126,7 @@ export default function GlobalImpact() {
             </div>
             <div className="impact-image">
               <Image
-                src="/trusted-industry/ChatGPT Image May 30, 2026, 03_51_20 PM.png"
+                src="/trusted-industry/microsoft.webp"
                 alt="Trusted Industry 3"
                 width={300}
                 height={200}
