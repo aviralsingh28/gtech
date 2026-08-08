@@ -12,6 +12,8 @@ import {
 } from "@/lib/seo";
 import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
+import { GoogleTagManager } from "@next/third-parties/google";
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
@@ -82,6 +84,7 @@ export default function RootLayout({
         <WebSiteJsonLd />
         <SmoothScroll />
         {children}
+        {GTM_ID && <GoogleTagManager gtmId={GTM_ID} />}
       </body>
     </html>
   );
